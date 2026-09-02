@@ -39,3 +39,13 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# local output of scripts/collect-history.mjs (the real store is the `history` branch)
+/history-data/
+
+# maplibre-gl worker script, copied from node_modules by `npm install`
+# (see scripts/copy-maplibre-worker.mjs)
+/public/maplibre-gl-worker.mjs
+/public/maplibre-gl-worker.mjs.map
+/public/maplibre-gl-shared.mjs
+/public/maplibre-gl-shared.mjs.map

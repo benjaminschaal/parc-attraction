@@ -1,36 +1,97 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Files d'attente — Parc Astérix & Europa-Park
 
-## Getting Started
+Webapp de suivi des temps d'attente, construite sur l'API publique de
+[wartezeiten.app](https://api.wartezeiten.app/).
 
-First, run the development server:
+- **Attentes en direct** — temps d'attente par attraction, statut (ouverte,
+  entretien, file virtuelle, fermée météo/gel), tri, recherche, favoris,
+  tendance sur 45 minutes et mini-courbe de la journée.
+- **En-tête de parc** — horaires du jour, nombre d'attractions ouvertes,
+  attente moyenne et maximale, indice d'affluence.
+- **Carte** — position GPS de chaque attraction avec son temps d'attente,
+  géolocalisation, fiche au clic.
+- **Historique** — courbe d'attente moyenne du parc, indice d'affluence,
+  classement des attractions les plus chargées, « journée type » heure par
+  heure, et par attraction sa courbe du jour et ses moyennes.
+
+Parcs couverts : Parc Astérix (France) et Europa-Park (Allemagne). Ajouter un
+parc = une entrée dans `src/lib/parks.ts` + une passe de
+`scripts/build-attractions-dataset.py`.
+
+## Développement
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Comment ça marche
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Le proxy est obligatoire
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+L'API wartezeiten.app **n'envoie aucun en-tête CORS** : elle est injoignable
+depuis le navigateur. Toutes les données passent par
+`src/app/api/park/[park]/route.ts`, qui appelle les trois endpoints
+(`waitingtimes`, `openingtimes`, `crowdlevel`) et renvoie un instantané unique.
+L'API limite à 100 requêtes/minute avec blocage de 15 minutes au-delà, donc les
+réponses sont mises en cache côté serveur et côté CDN.
 
-## Learn More
+### Les coordonnées GPS ne viennent pas de l'API
 
-To learn more about Next.js, take a look at the following resources:
+L'API ne publie aucune position. `src/data/attractions.json` associe chaque
+`uuid` d'attraction à des coordonnées OpenStreetMap (licence ODbL), récupérées
+via Overpass et complétées à la main pour la dizaine d'attractions qu'OSM nomme
+autrement. Le fond de carte est [OpenFreeMap](https://openfreemap.org/) (pas de
+clé API).
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Régénérer le jeu de données après l'ouverture ou le renommage d'une attraction :
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+python3 scripts/build-attractions-dataset.py
+```
 
-## Deploy on Vercel
+Le script affiche les correspondances approximatives (`fuzzy`, `substr`) et les
+attractions sans GPS — à relire avant de committer.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Les noms français
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+L'API ne parle que `de` et `en`. Pour le Parc Astérix, la réponse `de` conserve
+les noms français d'origine ; pour Europa-Park, les libellés français sont dans
+`attractions.json` (`nameFr`).
+
+### L'historique
+
+L'API ne publie que l'instant présent. L'historique est donc constitué par
+l'app elle-même, depuis deux sources fusionnées par horodatage :
+
+1. **Local (IndexedDB)** — chaque relevé reçu pendant que l'app est ouverte est
+   enregistré sur l'appareil, conservé 120 jours. Aucune donnée ne sort du
+   téléphone. C'est pour ça que laisser l'app ouverte pendant la visite donne la
+   journée complète.
+2. **Partagé (GitHub Actions)** — `.github/workflows/collect-history.yml` prend
+   un instantané toutes les 20 minutes entre 7h et 22h UTC et l'écrit dans la
+   branche orpheline `history` du dépôt. `vercel.json` désactive les
+   déploiements sur cette branche, donc ces commits ne déclenchent aucun build.
+
+Le second est lu par `/api/history`. Pour un dépôt **public** il n'y a rien à
+configurer. Pour un dépôt **privé**, ajouter dans Vercel :
+
+| Variable | Rôle |
+| --- | --- |
+| `HISTORY_GITHUB_TOKEN` | jeton en lecture seule sur le dépôt (permet aussi de lister les jours disponibles) |
+| `HISTORY_REPO` | `owner/repo`, si différent de la valeur par défaut |
+| `HISTORY_BRANCH` | branche de stockage, `history` par défaut |
+
+Sans jeton, l'app se rabat proprement sur l'historique local.
+
+## Déploiement
+
+Hébergé sur Vercel, déployé à chaque push sur `main`.
+
+## Limites connues
+
+- « L'Aventure Astérix » n'a pas de position : aucune donnée OpenStreetMap. Elle
+  est listée sous la carte plutôt que placée au hasard.
+- Pas encore de service worker : l'app est installable (manifeste + icônes) mais
+  ne fonctionne pas hors-ligne.
+- Les données sont fournies sans garantie par wartezeiten.app.

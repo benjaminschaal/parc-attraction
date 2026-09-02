@@ -1,0 +1,767 @@
+{
+  "generatedAt": "2026-09-02",
+  "source": "OpenStreetMap (ODbL) via Overpass API + manual curation",
+  "parks": {
+    "parcasterix": [
+      {
+        "uuid": "97d3e1f4-1489-43f9-a601-5ae66e2d78a2",
+        "code": "32343833",
+        "name": "Aérodynamix",
+        "slug": "aerodynamix",
+        "lat": 49.134045,
+        "lon": 2.570803,
+        "kind": "carousel",
+        "osmName": "Aéro Dynamix"
+      },
+      {
+        "uuid": "660e915c-964b-4dc3-9a05-015995bf6a89",
+        "code": "3633373632",
+        "name": "Panoramix Play Area",
+        "slug": "panoramix-play-area",
+        "nameFr": "Aire de Jeux Panoramix",
+        "lat": 49.13393,
+        "lon": 2.571662,
+        "kind": "playground"
+      },
+      {
+        "uuid": "d2e9cce5-656e-4b31-9e81-e6bbe6f3bb73",
+        "code": "3633373633",
+        "name": "Petit Chêne Play Area",
+        "slug": "petit-chene-play-area",
+        "nameFr": "Aire de Jeux du Petit Chêne",
+        "lat": 49.134127,
+        "lon": 2.570858,
+        "kind": "playground"
+      },
+      {
+        "uuid": "6b994105-e88d-4977-9cdf-20abaeca78c1",
+        "code": "343631313231",
+        "name": "Sanglier d'Or playground",
+        "slug": "sanglier-or-playground",
+        "nameFr": "Aire de jeux du Sanglier d'Or",
+        "lat": 49.135855,
+        "lon": 2.56866,
+        "kind": "playground"
+      },
+      {
+        "uuid": "7984cce0-812d-434c-bd8b-c67be1a1df58",
+        "code": "323037383039",
+        "name": "Attention Menhir !",
+        "slug": "attention-menhir",
+        "lat": 49.134058,
+        "lon": 2.56827,
+        "osmName": "Attention Menhir !"
+      },
+      {
+        "uuid": "5ac6afcf-9b82-4b0a-8f9f-ba5aa83c1a76",
+        "code": "323037383738",
+        "name": "L'Aventure Astérix",
+        "slug": "aventure-asterix"
+      },
+      {
+        "uuid": "1b7b7426-1b13-438a-8d70-0ec8e5b9fd4e",
+        "code": "363136",
+        "name": "Le Carrousel de César",
+        "slug": "carrousel-cesar",
+        "lat": 49.134646,
+        "lon": 2.572101,
+        "kind": "carousel",
+        "osmName": "Le Carrousel de César"
+      },
+      {
+        "uuid": "6b9e3269-d29e-45d7-a8f4-51a1c69b10dd",
+        "code": "343839373633",
+        "name": "Cétautomatix",
+        "slug": "cetautomatix",
+        "lat": 49.134298,
+        "lon": 2.568939,
+        "kind": "roller_coaster",
+        "osmName": "Cétautomatix"
+      },
+      {
+        "uuid": "4dbbf8de-14ca-43d8-94d6-215d98577718",
+        "code": "363438",
+        "name": "Les Chaudrons",
+        "slug": "chaudrons",
+        "lat": 49.134391,
+        "lon": 2.568309,
+        "kind": "amusement_ride",
+        "osmName": "Les Chaudrons"
+      },
+      {
+        "uuid": "9eef5ad6-e3f9-4166-8d2d-a6614b070ed0",
+        "code": "363538",
+        "name": "Le Cheval de Troie",
+        "slug": "cheval-troie",
+        "lat": 49.133431,
+        "lon": 2.573451,
+        "kind": "amusement_ride",
+        "osmName": "Le Cheval de Troie"
+      },
+      {
+        "uuid": "a57bd96d-0bb5-4801-89bd-a048d176b906",
+        "code": "343631313338",
+        "name": "Chez Gyrofolix",
+        "slug": "chez-gyrofolix",
+        "lat": 49.135735,
+        "lon": 2.569894,
+        "kind": "amusement_ride",
+        "osmName": "Chez Gyrofolix"
+      },
+      {
+        "uuid": "89008f63-dcb7-425f-9a7c-04ec944b4ad0",
+        "code": "343938313734",
+        "name": "The Descent of the Nile",
+        "slug": "descent-of-nile",
+        "nameFr": "La Descente du Nil",
+        "lat": 49.133465,
+        "lon": 2.567453,
+        "kind": "log_flume"
+      },
+      {
+        "uuid": "dabaa691-3b2c-46af-8885-619bc373bb1f",
+        "code": "3633373630",
+        "name": "Discobélix",
+        "slug": "discobelix",
+        "lat": 49.131901,
+        "lon": 2.573547,
+        "kind": "roller_coaster",
+        "osmName": "Discobélix (36)"
+      },
+      {
+        "uuid": "3b61939d-db9b-4ea4-8050-06b19bdf43e0",
+        "code": "32343832",
+        "name": "Enigmatix",
+        "slug": "enigmatix",
+        "lat": 49.133888,
+        "lon": 2.571002,
+        "kind": "drop_tower",
+        "osmName": "Enigmatix"
+      },
+      {
+        "uuid": "c92d6440-6282-419a-ae2b-b8de9a6b3f8d",
+        "code": "343938313733",
+        "name": "The Flight of Ibis",
+        "slug": "flight-of-ibis",
+        "nameFr": "L'Envol d'Ibis",
+        "lat": 49.133799,
+        "lon": 2.568033,
+        "kind": "swing_carousel"
+      },
+      {
+        "uuid": "dc1fef3e-e64d-4645-93f7-f9c52e7aa7c9",
+        "code": "363232",
+        "name": "Epidemaïs Croisières",
+        "slug": "epidemais-croisieres",
+        "lat": 49.134197,
+        "lon": 2.570558,
+        "kind": "boat_ride",
+        "osmName": "Epidemaïs croisières"
+      },
+      {
+        "uuid": "9aa07eb2-9d7c-4b31-9444-048bf0c64304",
+        "code": "363733",
+        "name": "L'Escadrille des As",
+        "slug": "escadrille-as",
+        "lat": 49.13226,
+        "lon": 2.57063,
+        "kind": "jet",
+        "osmName": "L'Escadrille Des As"
+      },
+      {
+        "uuid": "a3901250-3217-4833-bbe1-8d17afd5b3a7",
+        "code": "363139",
+        "name": "Les Espions de César",
+        "slug": "espions-cesar",
+        "lat": 49.134244,
+        "lon": 2.57154,
+        "kind": "train",
+        "osmName": "Les espions de César"
+      },
+      {
+        "uuid": "bb44ae57-eab5-44dd-a93c-84d60c3f0657",
+        "code": "32343836",
+        "name": "Etamine",
+        "slug": "etamine",
+        "lat": 49.133739,
+        "lon": 2.571351,
+        "kind": "carousel",
+        "osmName": "Etamine"
+      },
+      {
+        "uuid": "cbc163f9-b2b7-4ba1-b0cf-9bd9cdd1790e",
+        "code": "363631",
+        "name": "La Galère",
+        "slug": "galere",
+        "lat": 49.132486,
+        "lon": 2.57108,
+        "kind": "pirate_ship",
+        "osmName": "La Galère"
+      },
+      {
+        "uuid": "ee733916-c7cb-4402-afb5-558c1235fbea",
+        "code": "3131",
+        "name": "Goudurix",
+        "slug": "goudurix",
+        "lat": 49.131995,
+        "lon": 2.57089,
+        "kind": "roller_coaster",
+        "osmName": "Goudurix"
+      },
+      {
+        "uuid": "5ffb7fa0-2039-4173-aa16-371a48ccb006",
+        "code": "363339",
+        "name": "L'Hydre de Lerne",
+        "slug": "hydre-lerne",
+        "lat": 49.132726,
+        "lon": 2.573733,
+        "kind": "amusement_ride",
+        "osmName": "L'Hydre de Lerne"
+      },
+      {
+        "uuid": "28e8a976-41f7-4d0f-a63f-d06d8f0f9317",
+        "code": "32343835",
+        "name": "Hydrolix",
+        "slug": "hydrolix",
+        "lat": 49.134266,
+        "lon": 2.571402,
+        "kind": "water_slide",
+        "osmName": "Hydrolix (6)"
+      },
+      {
+        "uuid": "bb2c2697-4fbe-46ff-8271-2ed198212f2c",
+        "code": "32343834",
+        "name": "Lavomatix",
+        "slug": "lavomatix",
+        "lat": 49.134159,
+        "lon": 2.570881,
+        "kind": "carousel",
+        "osmName": "Lavomatix"
+      },
+      {
+        "uuid": "4b2dc61b-e8ff-4c19-a6b7-de7666433ab5",
+        "code": "363531",
+        "name": "Menhir Express",
+        "slug": "menhir-express",
+        "lat": 49.134619,
+        "lon": 2.568947,
+        "kind": "log_flume",
+        "osmName": "Menhir Express"
+      },
+      {
+        "uuid": "333430db-903e-4537-b482-1261c07ab863",
+        "code": "3235",
+        "name": "OzIris",
+        "slug": "oziris",
+        "lat": 49.134394,
+        "lon": 2.566368,
+        "kind": "roller_coaster",
+        "osmName": "OzIris"
+      },
+      {
+        "uuid": "2bcb21bd-a47d-4536-bdfa-f03e7f986479",
+        "code": "3932323134",
+        "name": "Pégase Express",
+        "slug": "pegase-express",
+        "lat": 49.13364,
+        "lon": 2.573924,
+        "kind": "roller_coaster",
+        "osmName": "Pégase Express"
+      },
+      {
+        "uuid": "db67854a-cc21-462c-8abe-87dffe1e6cca",
+        "code": "363637",
+        "name": "Le Petit Train",
+        "slug": "petit-train",
+        "lat": 49.134335,
+        "lon": 2.57195,
+        "kind": "train",
+        "osmName": "Le Petit Train"
+      },
+      {
+        "uuid": "82f706a8-ec9b-4ada-8dd8-166a8657a72f",
+        "code": "363331",
+        "name": "La Petite Tempête",
+        "slug": "petite-tempete",
+        "lat": 49.134839,
+        "lon": 2.568427,
+        "kind": "carousel",
+        "osmName": "La Petite Tempête (18)"
+      },
+      {
+        "uuid": "b18caeea-4510-4cd2-8df4-58ac027810bf",
+        "code": "363730",
+        "name": "Les Petites Chaises Volantes",
+        "slug": "petites-chaises-volantes",
+        "lat": 49.131916,
+        "lon": 2.571244,
+        "kind": "swing_carousel",
+        "osmName": "Les Petites Chaises Volantes"
+      },
+      {
+        "uuid": "257fcae0-c46c-4da6-9471-3f0da4856f84",
+        "code": "363739",
+        "name": "Les Petits Chars tamponneurs",
+        "slug": "petits-chars-tamponneurs",
+        "lat": 49.134476,
+        "lon": 2.570025,
+        "kind": "bumper_car",
+        "osmName": "Les petits chars tamponneurs"
+      },
+      {
+        "uuid": "374b9a57-9114-4299-8b53-400a276ebcfa",
+        "code": "3133",
+        "name": "Les Petits Drakkars",
+        "slug": "petits-drakkars",
+        "lat": 49.132059,
+        "lon": 2.571306,
+        "kind": "carousel",
+        "osmName": "Les Petits Drakkars"
+      },
+      {
+        "uuid": "5df93c22-cd14-4b64-ba16-c97478a0cebc",
+        "code": "3236",
+        "name": "La revanche des pirates - Le Grand Splatch",
+        "slug": "revanche-pirates-grand-splatch",
+        "lat": 49.134865,
+        "lon": 2.569941,
+        "kind": "log_flume",
+        "osmName": "La Revanche des Pirates - Le Grand Splatch"
+      },
+      {
+        "uuid": "5870cfa0-855e-4b3b-8265-c071eaf54dd9",
+        "code": "363235",
+        "name": "La Rivière d'Elis",
+        "slug": "riviere-elis",
+        "lat": 49.132303,
+        "lon": 2.573458,
+        "kind": "boat_ride",
+        "osmName": "La Rivière d'Elis"
+      },
+      {
+        "uuid": "495c3d35-c114-4ea2-94a3-120975310f1b",
+        "code": "3639",
+        "name": "Romus et Rapidus",
+        "slug": "romus-et-rapidus",
+        "lat": 49.133732,
+        "lon": 2.572494,
+        "kind": "river_rafting",
+        "osmName": "Romus et Rapidus"
+      },
+      {
+        "uuid": "e6f14706-fda6-4c36-a14a-7f9a40a0a142",
+        "code": "3730",
+        "name": "SOS Tournevis",
+        "slug": "sos-tournevis",
+        "lat": 49.134639,
+        "lon": 2.567458,
+        "kind": "roller_coaster",
+        "osmName": "SOS Tournevis"
+      },
+      {
+        "uuid": "86000011-d149-4a93-b25f-c879b856c388",
+        "code": "3130",
+        "name": "Tonnerre 2 Zeus",
+        "slug": "tonnerre-2-zeus",
+        "lat": 49.130867,
+        "lon": 2.573906,
+        "kind": "roller_coaster",
+        "osmName": "Tonnerre 2 Zeus"
+      },
+      {
+        "uuid": "6dbf5b32-349f-49ff-b6f2-19bdf3f1c1ca",
+        "code": "343735373930",
+        "name": "La tour de Numérobis",
+        "slug": "tour-numerobis",
+        "lat": 49.135087,
+        "lon": 2.566664,
+        "kind": "swing_carousel",
+        "osmName": "La tour de Numérobis"
+      },
+      {
+        "uuid": "6337f272-e7a5-42d3-8810-e4367e13fcbd",
+        "code": "343631313233",
+        "name": "Toutatis",
+        "slug": "toutatis",
+        "lat": 49.136251,
+        "lon": 2.569647,
+        "kind": "roller_coaster",
+        "osmName": "Toutatis"
+      },
+      {
+        "uuid": "03f8826e-79d1-4d00-8c92-3e69f740ee5f",
+        "code": "3132",
+        "name": "La Trace du Hourra",
+        "slug": "trace-hourra",
+        "lat": 49.135535,
+        "lon": 2.568157,
+        "kind": "roller_coaster",
+        "osmName": "Trace du Hourra"
+      },
+      {
+        "uuid": "68d8f605-0b90-41fd-8ef7-df4dd26ec4bd",
+        "code": "363336",
+        "name": "Le Vol d'Icare",
+        "slug": "vol-icare",
+        "lat": 49.133056,
+        "lon": 2.573878,
+        "kind": "roller_coaster",
+        "osmName": "Le Vol d'Icare"
+      }
+    ],
+    "europapark": [
+      {
+        "uuid": "160d1636-7f55-4435-aac7-5132deb79497",
+        "code": "343034",
+        "name": "Atlantis Adventure",
+        "slug": "atlantis-adventure",
+        "nameFr": "A la découverte d'Atlantis",
+        "lat": 48.26627,
+        "lon": 7.720209,
+        "kind": "dark_ride"
+      },
+      {
+        "uuid": "d2c4f5f5-4b5f-45c3-946e-5d3f3cedecbe",
+        "code": "343935",
+        "name": "Arena of Football - Be Part of It!",
+        "slug": "arena-of-football-be-part-of-it",
+        "lat": 48.265448,
+        "lon": 7.721146,
+        "kind": "bumper_car",
+        "osmName": "Arena of Football - Be Part of It!"
+      },
+      {
+        "uuid": "75d9c4bd-649d-45c7-bc41-3914ee4619b5",
+        "code": "393030",
+        "name": "ARTHUR",
+        "slug": "arthur",
+        "lat": 48.263631,
+        "lon": 7.724107,
+        "kind": "roller_coaster",
+        "osmName": "Arthur"
+      },
+      {
+        "uuid": "99f31e77-c0da-43f1-b2c9-2b2fd86a1e2c",
+        "code": "383030",
+        "name": "Atlantica SuperSplash",
+        "slug": "atlantica-supersplash",
+        "lat": 48.261682,
+        "lon": 7.721078,
+        "kind": "roller_coaster",
+        "osmName": "Atlantica SuperSplash"
+      },
+      {
+        "uuid": "4f7230a6-f91a-457c-8bb1-c42604860238",
+        "code": "313537",
+        "name": "Ba-a-a Express",
+        "slug": "ba-a-a-express",
+        "lat": 48.266279,
+        "lon": 7.723225,
+        "kind": "roller_coaster",
+        "osmName": "Ba-a-a Express"
+      },
+      {
+        "uuid": "1c08cec3-4b66-400f-8a09-c78ac8894df8",
+        "code": "383530",
+        "name": "blue fire Megacoaster",
+        "slug": "blue-fire-megacoaster",
+        "lat": 48.262242,
+        "lon": 7.718893,
+        "kind": "roller_coaster",
+        "osmName": "Blue Fire Megacoaster"
+      },
+      {
+        "uuid": "4ffaf347-517f-4171-805e-50c1549acb6f",
+        "code": "333530",
+        "name": "Swiss Bob Run",
+        "slug": "swiss-bob-run",
+        "nameFr": "Bobsleigh Suisse",
+        "lat": 48.266266,
+        "lon": 7.721562,
+        "kind": "roller_coaster"
+      },
+      {
+        "uuid": "fcaa64e8-a5d0-447e-a355-8654409a816f",
+        "code": "313030",
+        "name": "Castello dei Medici",
+        "slug": "castello-dei-medici",
+        "lat": 48.267922,
+        "lon": 7.721782,
+        "kind": "dark_ride",
+        "osmName": "Castello dei Medici"
+      },
+      {
+        "uuid": "c0a5c175-70d2-4417-a333-8a6e74a08b59",
+        "code": "373032",
+        "name": "Vienna Wave Swing - 'Glückspilz'",
+        "slug": "vienna-wave-swing-gluckspilz",
+        "nameFr": "Les chaises volantes de Vienne",
+        "lat": 48.262339,
+        "lon": 7.722945,
+        "kind": "swing_carousel"
+      },
+      {
+        "uuid": "1d854740-cf78-430f-a955-5c9d4274dc34",
+        "code": "313539",
+        "name": "Dancing Dingie",
+        "slug": "dancing-dingie",
+        "lat": 48.266572,
+        "lon": 7.724011,
+        "kind": "amusement_ride",
+        "osmName": "Dancing Dingie"
+      },
+      {
+        "uuid": "2ef267ca-265c-48d4-a7eb-444f7c2e66dd",
+        "code": "333531",
+        "name": "Matterhorn-Blitz",
+        "slug": "matterhorn-blitz",
+        "nameFr": "L'éclair du Cervin « Matterhorn-Blitz »",
+        "lat": 48.266852,
+        "lon": 7.720454,
+        "kind": "roller_coaster",
+        "osmName": "Matterhorn-Blitz"
+      },
+      {
+        "uuid": "64975d7d-d659-401c-b3c7-b698fb482f73",
+        "code": "353030",
+        "name": "Euro-Mir",
+        "slug": "euro-mir",
+        "lat": 48.26503,
+        "lon": 7.720158,
+        "kind": "roller_coaster",
+        "osmName": "Euro-Mir"
+      },
+      {
+        "uuid": "865f7779-3470-448e-ac4d-075b310e78bd",
+        "code": "323032",
+        "name": "Euro-Tower",
+        "slug": "euro-tower",
+        "lat": 48.267052,
+        "lon": 7.721992,
+        "kind": "amusement_ride",
+        "osmName": "Euro-Tower"
+      },
+      {
+        "uuid": "3a4f40bb-cb03-451c-9b75-8f0dfbffa50d",
+        "code": "323030",
+        "name": "Eurosat - CanCan Coaster",
+        "slug": "eurosat-cancan-coaster",
+        "lat": 48.267444,
+        "lon": 7.720833,
+        "kind": "roller_coaster",
+        "osmName": "Eurosat - CanCan Coaster"
+      },
+      {
+        "uuid": "c83bda4c-a946-41d0-be13-ed6ba63e8988",
+        "code": "373031",
+        "name": "Alpine Express 'Enzian'",
+        "slug": "alpine-express-enzian",
+        "nameFr": "Express des Alpes «Enzian»",
+        "lat": 48.262078,
+        "lon": 7.722643,
+        "kind": "roller_coaster",
+        "osmName": "Alpenexpress „Enzian“"
+      },
+      {
+        "uuid": "a29ec124-c679-43a8-bde5-fd33f2846a8c",
+        "code": "363530",
+        "name": "Fjord-Rafting",
+        "slug": "fjord-rafting",
+        "lat": 48.262317,
+        "lon": 7.720164,
+        "kind": "river_rafting",
+        "osmName": "Fjord Rafting"
+      },
+      {
+        "uuid": "b8ffd762-6461-4c03-a570-25cc12669cd0",
+        "code": "343731",
+        "name": "GRAND PRIX EDventure",
+        "slug": "grand-prix-edventure",
+        "lat": 48.264286,
+        "lon": 7.720581,
+        "kind": "dark_ride",
+        "osmName": "Ed & Edda - Grand Prix EDventure"
+      },
+      {
+        "uuid": "93819596-5e98-45f4-a0ad-38500698a121",
+        "code": "323034",
+        "name": "Jim Button - Journey through Morrowland",
+        "slug": "jim-button-journey-through-morrowland",
+        "nameFr": "Jim Bouton - Voyage à travers Lummerland",
+        "lat": 48.267241,
+        "lon": 7.722689,
+        "kind": "roller_coaster"
+      },
+      {
+        "uuid": "c55634ff-6798-40d7-bc9f-4ec3a4e7697d",
+        "code": "363030",
+        "name": "Josefina’s Magical Imperial Journey",
+        "slug": "josefina-s-magical-imperial-journey",
+        "nameFr": "Josefina et son voyage magique",
+        "lat": 48.263839,
+        "lon": 7.721993,
+        "kind": "roller_coaster"
+      },
+      {
+        "uuid": "12276d52-d566-4923-8afb-75c326d57587",
+        "code": "373533",
+        "name": "Kolumbusjolle",
+        "slug": "kolumbusjolle",
+        "lat": 48.261638,
+        "lon": 7.72322,
+        "kind": "amusement_ride",
+        "osmName": "Kolumbusjolle"
+      },
+      {
+        "uuid": "58a85d0c-c1ba-4726-bb05-99c05ec25f3b",
+        "code": "323031",
+        "name": "Madame Freudenreich Curiosités",
+        "slug": "madame-freudenreich-curiosites",
+        "lat": 48.267248,
+        "lon": 7.720777,
+        "kind": "dark_ride",
+        "osmName": "Madame Freudenreich Curiosités"
+      },
+      {
+        "uuid": "690bc4ae-bd81-4b59-952e-e95aac3502e6",
+        "code": "313535",
+        "name": "Old Mac Donald's Tractor Fun",
+        "slug": "old-mac-donald-s-tractor-fun",
+        "lat": 48.266421,
+        "lon": 7.722811,
+        "kind": "roller_coaster",
+        "osmName": "Old Mac Donald's Tractor Fun"
+      },
+      {
+        "uuid": "c7457473-9022-42d3-948a-48978bbd69fd",
+        "code": "343033",
+        "name": "Pegasus",
+        "slug": "pegasus",
+        "lat": 48.267726,
+        "lon": 7.719081,
+        "kind": "roller_coaster",
+        "osmName": "Pegasus"
+      },
+      {
+        "uuid": "92665061-02fa-41ab-9841-f26c8a90005c",
+        "code": "353530",
+        "name": "Pirates in Batavia",
+        "slug": "pirates-in-batavia",
+        "nameFr": "Pirates de Batavia",
+        "lat": 48.263497,
+        "lon": 7.719915,
+        "kind": "dark_ride",
+        "osmName": "Piraten in Batavia"
+      },
+      {
+        "uuid": "0b9af61a-069c-4669-9c01-ae3fa81910f4",
+        "code": "343030",
+        "name": "Water rollercoaster Poseidon",
+        "slug": "water-rollercoaster-poseidon",
+        "nameFr": "Poseidon grand huit aquatique",
+        "lat": 48.266666,
+        "lon": 7.719271,
+        "kind": "roller_coaster"
+      },
+      {
+        "uuid": "968152e6-6e04-4580-bc06-3fb468561152",
+        "code": "373030",
+        "name": "Tirol Log Flume",
+        "slug": "tirol-log-flume",
+        "nameFr": "Les Rapides du Tyrol",
+        "lat": 48.262526,
+        "lon": 7.722238,
+        "kind": "log_flume"
+      },
+      {
+        "uuid": "064d3073-4f2d-4435-a08f-97a58eb6b479",
+        "code": "323530",
+        "name": "Silver Star",
+        "slug": "silver-star",
+        "lat": 48.267834,
+        "lon": 7.719993,
+        "kind": "roller_coaster",
+        "osmName": "Silver Star"
+      },
+      {
+        "uuid": "62c71e4b-63c2-442f-ab60-80bcf09a32f2",
+        "code": "363635",
+        "name": "Snorri Touren",
+        "slug": "snorri-touren",
+        "lat": 48.262889,
+        "lon": 7.720087,
+        "kind": "dark_ride",
+        "osmName": "Snorri Touren"
+      },
+      {
+        "uuid": "d180dd2e-8254-4846-81a7-6cf315dc865a",
+        "code": "393031",
+        "name": "Poppy Towers",
+        "slug": "poppy-towers",
+        "nameFr": "Tourlicots",
+        "lat": 48.264138,
+        "lon": 7.723941,
+        "kind": "drop_tower",
+        "osmName": "Poppy Towers"
+      },
+      {
+        "uuid": "3835653a-d5fb-4739-8953-5063a5164628",
+        "code": "363531",
+        "name": "Vindjammer",
+        "slug": "vindjammer",
+        "lat": 48.262708,
+        "lon": 7.72066,
+        "kind": "pirate_ship",
+        "osmName": "Vindjammer"
+      },
+      {
+        "uuid": "f557353d-2de3-41a9-b1d5-fde66112e365",
+        "code": "39",
+        "name": "Voletarium",
+        "slug": "voletarium",
+        "lat": 48.269016,
+        "lon": 7.722806,
+        "kind": "flying_theater"
+      },
+      {
+        "uuid": "a9b06296-202f-4761-b2af-050737008530",
+        "code": "313032",
+        "name": "Volo da Vinci",
+        "slug": "volo-da-vinci",
+        "lat": 48.267506,
+        "lon": 7.722263,
+        "kind": "train",
+        "osmName": "Volo da Vinci"
+      },
+      {
+        "uuid": "38d87d15-5698-4a67-b61f-1eb51301a1ce",
+        "code": "343434",
+        "name": "Voltron Nevera powered by Rimac",
+        "slug": "voltron-nevera-powered-by-rimac",
+        "lat": 48.265717,
+        "lon": 7.719798,
+        "kind": "roller_coaster"
+      },
+      {
+        "uuid": "96bf0abf-13e9-4ff1-b007-1a703e801b51",
+        "code": "383531",
+        "name": "Whale Adventures - Northern Lights",
+        "slug": "whale-adventures-northern-lights",
+        "lat": 48.261644,
+        "lon": 7.719197,
+        "kind": "amusement_ride",
+        "osmName": "Whale Adventures - Northern Lights"
+      },
+      {
+        "uuid": "14077dfa-4f29-4ce0-b1cb-2818fc13731f",
+        "code": "383533",
+        "name": "WODAN - Timburcoaster",
+        "slug": "wodan-timburcoaster",
+        "lat": 48.261228,
+        "lon": 7.718991,
+        "kind": "roller_coaster",
+        "osmName": "WODAN - Timburcoaster"
+      }
+    ]
+  }
+}

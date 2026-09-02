@@ -1,0 +1,66 @@
+name: Collect wait-time history
+
+# The Wartezeiten API only serves current wait times. This job snapshots them
+# into the orphan `history` branch so the app has a history that also covers
+# the hours nobody had it open. `history` is excluded from Vercel builds by
+# `vercel.json`, so these commits never trigger a deployment.
+on:
+  schedule:
+    # Every 20 minutes between 07:00 and 21:59 UTC (parks are shut outside).
+    - cron: "*/20 7-21 * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: collect-history
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout scripts
+        uses: actions/checkout@v4
+
+      - name: Checkout history branch
+        uses: actions/checkout@v4
+        with:
+          ref: history
+          path: history-data
+        continue-on-error: true
+
+      - name: Create history branch on first run
+        run: |
+          if [ ! -d history-data/.git ]; then
+            mkdir -p history-data
+            cd history-data
+            git init -b history
+            git remote add origin "https://github.com/${GITHUB_REPOSITORY}.git"
+          fi
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Collect snapshot
+        env:
+          HISTORY_DIR: history-data
+        run: node scripts/collect-history.mjs
+
+      - name: Commit and push
+        working-directory: history-data
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "Nothing new to record."
+            exit 0
+          fi
+          git commit -m "history: snapshot $(date -u +%Y-%m-%dT%H:%MZ)"
+          git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          git push origin HEAD:history
