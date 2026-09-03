@@ -54,6 +54,19 @@ jobs:
           HISTORY_DIR: history-data
         run: node scripts/collect-history.mjs
 
+      # Vercel reads `vercel.json` from the branch that was pushed, so the copy
+      # on `main` cannot exempt this branch: without a copy here, every
+      # half-hourly snapshot fires a preview deployment that fails (the branch
+      # holds data, not an app).
+      - name: Keep Vercel out of the history branch
+        run: |
+          cat > history-data/vercel.json <<'JSON'
+          {
+            "$schema": "https://openapi.vercel.sh/vercel.json",
+            "git": { "deploymentEnabled": false }
+          }
+          JSON
+
       - name: Commit and push
         working-directory: history-data
         env:
