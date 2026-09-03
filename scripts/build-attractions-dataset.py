@@ -58,6 +58,32 @@ PARKS = {
         "source": ("queuetimes", 301),
         "bbox": (45.6180, 5.5650, 45.6250, 5.5760),
     },
+    # The boxes below are the `tourism=theme_park` polygons OpenStreetMap
+    # carries for each park. The two Disney ones are neighbours, so they have
+    # to stay tight: a loose box would pull the other park's rides in.
+    "disneylandparis": {
+        "source": ("wartezeiten", "disneylandparis"),
+        "language": "en",
+        "bbox": (48.8685, 2.7700, 48.8761, 2.7821),
+    },
+    "disneyadventureworld": {
+        "source": ("wartezeiten", "disneyadventureworld"),
+        "language": "en",
+        "bbox": (48.8621, 2.7716, 48.8687, 2.7811),
+    },
+    "futuroscope": {
+        "source": ("wartezeiten", "futuroscope"),
+        # The API answers in English whichever language we ask for, so the
+        # French labels can only come from OpenStreetMap.
+        "language": "en",
+        "frenchFromOsm": True,
+        "bbox": (46.6664, 0.3638, 46.6743, 0.3772),
+    },
+    "nigloland": {
+        "source": ("wartezeiten", "nigloland"),
+        "language": "en",
+        "bbox": (48.2572, 4.6080, 48.2660, 4.6197),
+    },
 }
 
 # Rides Overpass carries under a different name, or not at all under the name
@@ -221,6 +247,13 @@ def tag_score(tags: dict) -> int:
     return score
 
 
+# Every tag a ride may be findable under. `name` is the local one (French, in
+# a French park) and stays the label we display; the others only widen the net,
+# which is what lets a park whose API answers in English — Futuroscope — still
+# find its OpenStreetMap feature.
+NAME_TAGS = ("name", "name:en", "name:fr", "name:de", "alt_name", "official_name", "short_name")
+
+
 def index_osm(elements: list) -> dict:
     best = {}
     for element in elements:
@@ -230,8 +263,7 @@ def index_osm(elements: list) -> dict:
             continue
         lat = element.get("lat") or (element.get("center") or {}).get("lat")
         lon = element.get("lon") or (element.get("center") or {}).get("lon")
-        key = normalise(name)
-        if lat is None or lon is None or not key:
+        if lat is None or lon is None:
             continue
         candidate = {
             "name": name,
@@ -240,8 +272,12 @@ def index_osm(elements: list) -> dict:
             "score": tag_score(tags),
             "kind": tags.get("attraction") or tags.get("leisure") or "",
         }
-        if key not in best or candidate["score"] > best[key]["score"]:
-            best[key] = candidate
+        for tag in NAME_TAGS:
+            key = normalise(tags.get(tag, ""))
+            if not key:
+                continue
+            if key not in best or candidate["score"] > best[key]["score"]:
+                best[key] = candidate
     return best
 
 
@@ -286,6 +322,14 @@ def build(park: str) -> list:
             if hit["kind"]:
                 entry["kind"] = hit["kind"]
             entry["osmName"] = hit["name"]
+            # Futuroscope's API answers in English whichever language we ask
+            # for, so the only French name available is the OpenStreetMap one.
+            if (
+                PARKS[park].get("frenchFromOsm")
+                and "nameFr" not in entry
+                and hit["name"] != name
+            ):
+                entry["nameFr"] = hit["name"]
             if how != "exact":
                 print(f"  [{how}] {name} -> {hit['name']}")
         elif name in MANUAL_COORDS.get(park, {}):

@@ -39,8 +39,6 @@ export const PARKS = [
   {
     id: "parcasterix",
     name: "Parc Astérix",
-    /** Used in the park switcher, which has to fit three parks on a phone. */
-    shortName: "Astérix",
     country: "France",
     flag: "🇫🇷",
     timeZone: "Europe/Paris",
@@ -57,7 +55,6 @@ export const PARKS = [
   {
     id: "europapark",
     name: "Europa-Park",
-    shortName: "Europa",
     country: "Allemagne",
     flag: "🇩🇪",
     timeZone: "Europe/Berlin",
@@ -74,7 +71,6 @@ export const PARKS = [
   {
     id: "walibirhonealpes",
     name: "Walibi Rhône-Alpes",
-    shortName: "Walibi",
     country: "France",
     flag: "🇫🇷",
     timeZone: "Europe/Paris",
@@ -84,6 +80,74 @@ export const PARKS = [
     zoom: 15.8,
     accent: "#65a30d",
     website: "https://www.walibi.fr",
+  },
+  {
+    id: "disneylandparis",
+    name: "Disneyland Paris",
+    country: "France",
+    flag: "🇫🇷",
+    timeZone: "Europe/Paris",
+    // `de` translates the sponsor mentions into German; `en` leaves the ride
+    // names as the park itself uses them.
+    source: {
+      provider: "wartezeiten",
+      parkId: "disneylandparis",
+      language: "en",
+    } as ParkSource,
+    center: [2.7761, 48.8723] as [number, number],
+    zoom: 15.6,
+    accent: "#6366f1",
+    website: "https://www.disneylandparis.com/fr-fr/",
+  },
+  {
+    id: "disneyadventureworld",
+    name: "Disney Adventure World",
+    country: "France",
+    flag: "🇫🇷",
+    timeZone: "Europe/Paris",
+    source: {
+      provider: "wartezeiten",
+      parkId: "disneyadventureworld",
+      language: "en",
+    } as ParkSource,
+    center: [2.7764, 48.8654] as [number, number],
+    zoom: 15.8,
+    accent: "#a855f7",
+    website: "https://www.disneylandparis.com/fr-fr/",
+  },
+  {
+    id: "futuroscope",
+    name: "Futuroscope",
+    country: "France",
+    flag: "🇫🇷",
+    timeZone: "Europe/Paris",
+    // The only park whose API answers in English whichever language we ask
+    // for: its French labels come from OpenStreetMap, via `nameFr`.
+    source: {
+      provider: "wartezeiten",
+      parkId: "futuroscope",
+      language: "en",
+    } as ParkSource,
+    center: [0.3705, 46.6704] as [number, number],
+    zoom: 15.4,
+    accent: "#14b8a6",
+    website: "https://www.futuroscope.com/",
+  },
+  {
+    id: "nigloland",
+    name: "Nigloland",
+    country: "France",
+    flag: "🇫🇷",
+    timeZone: "Europe/Paris",
+    source: {
+      provider: "wartezeiten",
+      parkId: "nigloland",
+      language: "en",
+    } as ParkSource,
+    center: [4.6138, 48.2616] as [number, number],
+    zoom: 15.5,
+    accent: "#dc2626",
+    website: "https://www.nigloland.fr/",
   },
 ] as const;
 
