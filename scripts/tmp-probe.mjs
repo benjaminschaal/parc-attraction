@@ -1,89 +1,86 @@
 #!/usr/bin/env node
 /**
- * Fichier jetable. Le proxy réseau de la session de développement bloque
- * api.wartezeiten.app, Overpass et Nominatim ; un runner GitHub y accède.
- * Ce script y interroge l'API et imprime tout sur stdout, pour vérifier
- * l'identifiant exact d'un parc avant de l'ajouter à `src/lib/parks.ts`.
- * Supprimé une fois la vérification faite.
+ * Fichier jetable. Le proxy réseau de la session de développement bloque les
+ * API de temps d'attente ; un runner GitHub y accède. Deuxième passe : caractériser
+ * queue-times.com, seule source publique qui couvre Walibi Rhône-Alpes.
  */
-const API = "https://api.wartezeiten.app/v1";
-
-async function api(endpoint, headers = {}) {
-  const res = await fetch(`${API}/${endpoint}`, {
-    headers: {
-      accept: "application/json",
-      "user-agent": "parc-attraction/1.0",
-      ...headers,
-    },
+async function get(url, headers = {}) {
+  const res = await fetch(url, {
+    headers: { accept: "application/json", "user-agent": "parc-attraction/1.0", ...headers },
   });
-  if (!res.ok) {
-    throw new Error(`${endpoint} ${JSON.stringify(headers)} -> HTTP ${res.status}`);
-  }
+  if (!res.ok) throw new Error(`${url} -> HTTP ${res.status}`);
   return res.json();
 }
 
-// 1. Tous les parcs connus de l'API, et ceux dont le nom évoque Walibi.
-let walibi = [];
+// 1. Les parcs de queue-times, et ceux qui nous intéressent.
 try {
-  const parks = await api("parks", { language: "en" });
-  console.log(`PARKS_COUNT ${Array.isArray(parks) ? parks.length : "?"}`);
-  console.log(`PARKS_ALL ${JSON.stringify(parks)}`);
-  walibi = (parks ?? []).filter((p) =>
-    JSON.stringify(p).toLowerCase().includes("walibi"),
+  const groups = await get("https://queue-times.com/parks.json");
+  const flat = groups.flatMap((g) => (g.parks ?? []).map((p) => ({ ...p, group: g.name })));
+  console.log(`QT_COUNT ${flat.length}`);
+  const wanted = flat.filter((p) =>
+    /walibi|ast|europa/i.test(p.name),
   );
-  console.log(`WALIBI ${JSON.stringify(walibi, null, 2)}`);
+  console.log(`QT_MATCHES ${JSON.stringify(wanted, null, 2)}`);
 } catch (error) {
-  console.log(`PARKS_ERROR ${error.message}`);
+  console.log(`QT_PARKS_ERROR ${error.message}`);
 }
 
-// 2. Les attractions du parc trouvé, ou des identifiants plausibles.
-const candidates = [
-  ...new Set(
-    [
-      ...walibi.map((p) => p.id ?? p.park ?? p.slug),
-      "walibirhonealpes",
-      "walibirhonealpen",
-    ].filter(Boolean),
-  ),
-];
-for (const id of candidates) {
-  for (const language of ["en", "de"]) {
-    try {
-      const rows = await api("waitingtimes", { park: id, language });
-      console.log(`RIDES ${id} ${language} ${rows.length}`);
-      console.log(
-        `RIDES_JSON ${id} ${language} ${JSON.stringify(
-          rows.map((r) => ({ uuid: r.uuid, code: r.code, name: r.name })),
-        )}`,
-      );
-    } catch (error) {
-      console.log(`RIDES_ERROR ${id} ${language} ${error.message}`);
-    }
+// 2. Le détail d'un parc : structure exacte de la réponse temps réel.
+for (const id of [301, 9, 51]) {
+  try {
+    const data = await get(`https://queue-times.com/parks/${id}/queue_times.json`);
+    const lands = data.lands ?? [];
+    const rides = [...(data.rides ?? []), ...lands.flatMap((l) => l.rides ?? [])];
+    console.log(`QT_PARK ${id} lands=${lands.length} rides=${rides.length}`);
+    console.log(`QT_KEYS ${id} ${JSON.stringify(Object.keys(data))}`);
+    console.log(`QT_SAMPLE ${id} ${JSON.stringify(rides.slice(0, 4), null, 2)}`);
+    console.log(
+      `QT_RIDES ${id} ${JSON.stringify(
+        rides.map((r) => ({ id: r.id, name: r.name, open: r.is_open, wait: r.wait_time })),
+      )}`,
+    );
+  } catch (error) {
+    console.log(`QT_PARK_ERROR ${id} ${error.message}`);
   }
 }
 
-// 3. L'emprise géographique du parc, pour la requête Overpass du générateur.
-try {
-  const res = await fetch(
-    "https://nominatim.openstreetmap.org/search?" +
-      new URLSearchParams({
-        q: "Walibi Rhône-Alpes, Les Avenières",
-        format: "json",
-        limit: "5",
-      }),
-    { headers: { "user-agent": "parc-attraction/1.0 (probe)" } },
-  );
-  const hits = await res.json();
-  console.log(
-    `NOMINATIM ${JSON.stringify(
-      hits.map((h) => ({
-        name: h.display_name,
-        lat: h.lat,
-        lon: h.lon,
-        bbox: h.boundingbox,
-      })),
-    )}`,
-  );
-} catch (error) {
-  console.log(`NOMINATIM_ERROR ${error.message}`);
+// 3. Les attractions de Walibi Rhône-Alpes dans OpenStreetMap, pour la carte.
+const BBOX = "45.6180,5.5650,45.6250,5.5760";
+const query = `[out:json][timeout:120];
+(
+  nwr["attraction"](${BBOX});
+  nwr["tourism"="attraction"](${BBOX});
+  nwr["leisure"="playground"]["name"](${BBOX});
+);
+out center tags;`;
+for (const mirror of [
+  "https://overpass.kumi.systems/api/interpreter",
+  "https://overpass-api.de/api/interpreter",
+]) {
+  try {
+    const res = await fetch(mirror, {
+      method: "POST",
+      body: new URLSearchParams({ data: query }),
+      headers: { "user-agent": "parc-attraction/1.0" },
+    });
+    const body = await res.text();
+    if (!body.trimStart().startsWith("{")) throw new Error(body.slice(0, 120));
+    const elements = JSON.parse(body).elements ?? [];
+    console.log(`OSM_COUNT ${elements.length}`);
+    console.log(
+      `OSM ${JSON.stringify(
+        elements
+          .filter((e) => e.tags?.name)
+          .map((e) => ({
+            name: e.tags.name,
+            lat: e.lat ?? e.center?.lat,
+            lon: e.lon ?? e.center?.lon,
+            kind: e.tags.attraction ?? e.tags.leisure ?? "",
+          })),
+      )}`,
+    );
+    break;
+  } catch (error) {
+    console.log(`OSM_ERROR ${mirror} ${error.message}`);
+  }
 }
