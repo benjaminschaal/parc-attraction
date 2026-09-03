@@ -4,7 +4,7 @@
 > récupérer l'historique des parcs suivis, et faut-il passer à une vraie base de
 > données (Supabase ou autre) en restant sur des offres gratuites.
 >
-> **Mise à jour :** l'app suit désormais trois parcs et interroge deux API.
+> **Mise à jour :** l'app suit désormais sept parcs et interroge deux API.
 > Walibi Rhône-Alpes est absent des 46 parcs de wartezeiten.app, il passe par
 > Queue-Times — voir le README. Cela ne change rien aux conclusions ci-dessous :
 > Queue-Times ne publie pas plus d'historique que wartezeiten.app.
@@ -58,7 +58,7 @@ flowchart LR
 
 **Conclusion :** pas de rattrapage possible honnêtement. La bonne nouvelle,
 c'est que la couverture est déjà réglée : `scripts/collect-history.mjs` boucle
-sur les trois parcs, quelle que soit leur source, et un échec sur l'un ne fait
+sur les sept parcs, quelle que soit leur source, et un échec sur l'un ne fait
 pas perdre l'instantané des autres.
 
 ### Deux réglages gratuits qui changent tout
@@ -123,8 +123,10 @@ flowchart TD
 ### Ce que disent les mesures
 
 J'ai simulé 30 jours de collecte réelle (2 parcs × 28 relevés/jour × 76
-attractions, un commit par relevé), puis mesuré le dépôt Git. Le troisième parc
-ajoute 27 attractions, soit environ +35 % — les ordres de grandeur tiennent :
+attractions, un commit par relevé), puis mesuré le dépôt Git. Les sept parcs
+suivis aujourd'hui totalisent environ 220 attractions, soit près de trois fois
+la simulation — l'extrapolation ci-dessous est donc à multiplier par trois, et
+les ordres de grandeur tiennent toujours :
 
 | Mesure | Valeur |
 | --- | --- |

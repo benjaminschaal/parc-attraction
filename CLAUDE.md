@@ -2,8 +2,8 @@
 
 # parc-attraction
 
-Temps d'attente en direct, carte et historique pour le Parc Astérix, Europa-Park
-et Walibi Rhône-Alpes, à partir de deux API publiques :
+Temps d'attente en direct, carte et historique pour sept parcs (cinq français,
+Europa-Park et Walibi Rhône-Alpes), à partir de deux API publiques :
 [wartezeiten.app](https://api.wartezeiten.app/) et
 [Queue-Times](https://queue-times.com/).
 
@@ -20,7 +20,9 @@ et Walibi Rhône-Alpes, à partir de deux API publiques :
   depuis le navigateur. Tout passe par `src/app/api/park/[park]/route.ts`.
 - **wartezeiten.app ne parle que `de` et `en`.** Pour le Parc Astérix, `de` renvoie
   les noms français d'origine ; pour Europa-Park les noms français sont dans
-  `src/data/attractions.json` (`nameFr`). Voir `src/lib/parks.ts`
+  `src/data/attractions.json` (`nameFr`). **Le Futuroscope répond en anglais dans
+  les deux langues** : ses libellés français viennent d'OpenStreetMap, via le
+  drapeau `frenchFromOsm` du générateur. Voir `src/lib/parks.ts`
   (`source.language`).
 - **Aucune des deux API ne contient de coordonnée GPS.** Les positions viennent
   d'OpenStreetMap et sont figées dans `src/data/attractions.json`, indexées par

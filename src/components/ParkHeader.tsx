@@ -1,13 +1,13 @@
 "use client";
 
-import Link from "next/link";
-import { getSource, PARKS, type Park } from "@/lib/parks";
+import { getSource, type Park } from "@/lib/parks";
 import {
   formatDateLong,
   formatTime,
   relativeFromNow,
 } from "@/lib/format";
 import CrowdGauge from "@/components/ui/CrowdGauge";
+import ParkPicker from "@/components/ParkPicker";
 import type { ParkSnapshot } from "@/lib/snapshot";
 
 interface ParkHeaderProps {
@@ -33,25 +33,7 @@ export default function ParkHeader({
   return (
     <header className="border-b border-border bg-surface">
       <div className="mx-auto flex w-full max-w-3xl flex-col gap-3 px-4 pt-3 pb-4">
-        <nav className="flex gap-1.5" aria-label="Choix du parc">
-          {PARKS.map((p) => (
-            <Link
-              key={p.id}
-              href={`/parc/${p.id}`}
-              aria-current={p.id === park.id ? "page" : undefined}
-              className={`flex-1 rounded-lg border px-3 py-2 text-center text-sm font-medium transition-colors ${
-                p.id === park.id
-                  ? "border-transparent bg-foreground text-background"
-                  : "border-border text-muted hover:bg-surface-2"
-              }`}
-            >
-              <span aria-hidden className="mr-1.5">
-                {p.flag}
-              </span>
-              {p.shortName}
-            </Link>
-          ))}
-        </nav>
+        <ParkPicker park={park} />
 
         <div className="flex items-start justify-between gap-3">
           <div className="min-w-0">

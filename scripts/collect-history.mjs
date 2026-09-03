@@ -35,6 +35,34 @@ const PARKS = [
     timeZone: "Europe/Paris",
     source: { provider: "queuetimes", parkId: 301 },
   },
+  {
+    id: "disneylandparis",
+    timeZone: "Europe/Paris",
+    source: {
+      provider: "wartezeiten",
+      parkId: "disneylandparis",
+      language: "en",
+    },
+  },
+  {
+    id: "disneyadventureworld",
+    timeZone: "Europe/Paris",
+    source: {
+      provider: "wartezeiten",
+      parkId: "disneyadventureworld",
+      language: "en",
+    },
+  },
+  {
+    id: "futuroscope",
+    timeZone: "Europe/Paris",
+    source: { provider: "wartezeiten", parkId: "futuroscope", language: "en" },
+  },
+  {
+    id: "nigloland",
+    timeZone: "Europe/Paris",
+    source: { provider: "wartezeiten", parkId: "nigloland", language: "en" },
+  },
 ];
 
 async function json(url, headers) {
