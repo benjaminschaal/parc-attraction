@@ -1030,6 +1030,1096 @@
         "kind": "roller_coaster",
         "osmName": "WoodStock Express"
       }
+    ],
+    "disneylandparis": [
+      {
+        "uuid": "b8e72b86-7b62-4575-9e40-bdbdf9808550",
+        "code": "503141413030",
+        "name": "Adventure Isle",
+        "slug": "adventure-isle",
+        "lat": 48.872594,
+        "lon": 2.773317,
+        "osmName": "Adventure Isle"
+      },
+      {
+        "uuid": "68885f70-9ce2-4478-a546-a2d5dd571026",
+        "code": "50314e413030",
+        "name": "Alice's Curious Labyrinth",
+        "slug": "alice-s-curious-labyrinth",
+        "lat": 48.87449,
+        "lon": 2.774487,
+        "kind": "maze",
+        "osmName": "Alice's Curious Labyrinth"
+      },
+      {
+        "uuid": "5be62b01-8f63-4003-b310-7c6ee42daecf",
+        "code": "503144413033",
+        "name": "Autopia, presented by Avis",
+        "slug": "autopia-presented-by-avis",
+        "lat": 48.873234,
+        "lon": 2.778926,
+        "kind": "amusement_ride",
+        "osmName": "Autopia"
+      },
+      {
+        "uuid": "f7bb5073-35f7-4d8c-99ca-31fc2c245eb0",
+        "code": "503152413030",
+        "name": "Big Thunder Mountain",
+        "slug": "big-thunder-mountain",
+        "lat": 48.871274,
+        "lon": 2.774517,
+        "kind": "roller_coaster",
+        "osmName": "Big Thunder Mountain"
+      },
+      {
+        "uuid": "726a1dee-0ecd-4e92-8ef0-c010991908da",
+        "code": "50314e413031",
+        "name": "Blanche-Neige et les Sept Nains®",
+        "slug": "blanche-neige-et-sept-nains",
+        "lat": 48.873285,
+        "lon": 2.775308,
+        "kind": "dark_ride",
+        "osmName": "Blanche-Neige et les Sept Nains®"
+      },
+      {
+        "uuid": "faae67c2-b314-496b-ace3-8c983a554ca9",
+        "code": "503144413034",
+        "name": "Buzz Lightyear Laser Blast",
+        "slug": "buzz-lightyear-laser-blast",
+        "lat": 48.873511,
+        "lon": 2.777842,
+        "kind": "dark_ride",
+        "osmName": "Buzz Lightyear Laser Blast"
+      },
+      {
+        "uuid": "2de3b61f-3d71-4a07-87ff-d2085d2cd599",
+        "code": "503141413031",
+        "name": "La Cabane des Robinson",
+        "slug": "cabane-robinson",
+        "lat": 48.872333,
+        "lon": 2.77372,
+        "osmName": "La Cabane des Robinson"
+      },
+      {
+        "uuid": "04b7df48-d0a8-4eea-87e5-2705226dcdd9",
+        "code": "50314e413032",
+        "name": "Le Carrousel de Lancelot",
+        "slug": "carrousel-lancelot",
+        "lat": 48.873739,
+        "lon": 2.775372,
+        "kind": "carousel",
+        "osmName": "Le Carrousel de Lancelot"
+      },
+      {
+        "uuid": "300779d2-8d44-4436-b321-aba495fb8e84",
+        "code": "50314e413033",
+        "name": "Casey Jr. – le Petit Train du Cirque",
+        "slug": "casey-jr-petit-train-cirque",
+        "lat": 48.875386,
+        "lon": 2.774176,
+        "kind": "roller_coaster",
+        "osmName": "Casey Jr. – le Petit Train du Cirque"
+      },
+      {
+        "uuid": "c2e41b02-60e3-4ff1-9c34-807e29bf98e2",
+        "code": "503144413130",
+        "name": "Disneyland Railroad Discoveryland Station",
+        "slug": "disneyland-railroad-discoveryland-station",
+        "lat": 48.874721,
+        "lon": 2.779414,
+        "osmName": "Disneyland Railroad Discoveryland Station"
+      },
+      {
+        "uuid": "da7908a8-5d2b-4e35-9d4c-59b8cf9c8c44",
+        "code": "50314e413136",
+        "name": "Disneyland Railroad Fantasyland Station",
+        "slug": "disneyland-railroad-fantasyland-station",
+        "lat": 48.874623,
+        "lon": 2.773573,
+        "osmName": "Disneyland Railroad Fantasyland Station"
+      },
+      {
+        "uuid": "ddd5f8f7-5887-4d5b-b5aa-ce60fef07f81",
+        "code": "503152413130",
+        "name": "Disneyland Railroad Frontierland Depot",
+        "slug": "disneyland-railroad-frontierland-depot",
+        "lat": 48.870194,
+        "lon": 2.772139,
+        "osmName": "Disneyland Railroad Frontierland Depot"
+      },
+      {
+        "uuid": "cd7a511d-ff26-4f70-922b-d39b4bdf130d",
+        "code": "50314d413035",
+        "name": "Disneyland Railroad Main Street Station",
+        "slug": "disneyland-railroad-main-street-station",
+        "lat": 48.870795,
+        "lon": 2.779123,
+        "osmName": "Disneyland Railroad Main Street Station"
+      },
+      {
+        "uuid": "34e6194d-a0f8-47a7-ba9d-93228205f878",
+        "code": "50314d413031",
+        "name": "Disneyland Railroad Main Street Station",
+        "slug": "disneyland-railroad-main-street-station",
+        "lat": 48.870795,
+        "lon": 2.779123,
+        "osmName": "Disneyland Railroad Main Street Station"
+      },
+      {
+        "uuid": "f052d52a-2b08-41c3-b3a3-d9dea54c2bfc",
+        "code": "50314e413035",
+        "name": "Dumbo the Flying Elephant",
+        "slug": "dumbo-flying-elephant",
+        "lat": 48.873993,
+        "lon": 2.774585,
+        "kind": "carousel",
+        "osmName": "Dumbo the Flying Elephant"
+      },
+      {
+        "uuid": "2560ecd1-a522-474c-951f-4980df4da16a",
+        "code": "503152413037",
+        "name": "Frontierland Playground",
+        "slug": "frontierland-playground",
+        "lat": 48.870351,
+        "lon": 2.774194,
+        "kind": "playground",
+        "osmName": "Frontierland Playground"
+      },
+      {
+        "uuid": "206b93c5-b787-4f92-80c3-fe136e60fd04",
+        "code": "503141413032",
+        "name": "Indiana Jones™ and the Temple of Peril",
+        "slug": "indiana-jonestm-and-temple-of-peril",
+        "lat": 48.87208,
+        "lon": 2.771849,
+        "kind": "roller_coaster",
+        "osmName": "Indiana Jones™ and the Temple of Peril"
+      },
+      {
+        "uuid": "4afff667-db31-4f69-9035-e3ca49b38ec3",
+        "code": "5031414130322d73696e676c65",
+        "name": "Indiana Jones™ and the Temple of Peril (Single Rider)",
+        "slug": "indiana-jonestm-and-temple-of-peril-single-rider",
+        "lat": 48.87208,
+        "lon": 2.771849,
+        "kind": "roller_coaster",
+        "osmName": "Indiana Jones™ and the Temple of Peril"
+      },
+      {
+        "uuid": "af4108d1-c2be-48cd-a25a-70d2a72a0d29",
+        "code": "50314e413037",
+        "name": "\"it's a small world\"",
+        "slug": "it-s-a-small-world",
+        "lat": 48.874853,
+        "lon": 2.776071,
+        "kind": "dark_ride",
+        "osmName": "\"it's a small world\""
+      },
+      {
+        "uuid": "72698e1f-761c-4e9e-ba2e-1011f6bfc303",
+        "code": "50314e413038",
+        "name": "Mad Hatter's Tea Cups",
+        "slug": "mad-hatter-s-tea-cups",
+        "lat": 48.874404,
+        "lon": 2.775165,
+        "kind": "amusement_ride",
+        "osmName": "Mad Hatter's Tea Cups"
+      },
+      {
+        "uuid": "1dd658ab-4c74-4f00-bdae-f76de45b3b74",
+        "code": "50314d413034",
+        "name": "Main Street Vehicles",
+        "slug": "main-street-vehicles",
+        "lat": 48.870909,
+        "lon": 2.77846,
+        "osmName": "Main Street Vehicles"
+      },
+      {
+        "uuid": "1e2f5ee6-c1e1-40d9-987d-1b14425009f5",
+        "code": "503144413133",
+        "name": "Mickey’s PhilharMagic",
+        "slug": "mickey-s-philharmagic",
+        "lat": 48.874486,
+        "lon": 2.779854,
+        "osmName": "Mickey's PhilharMagic"
+      },
+      {
+        "uuid": "21313e50-24ff-45c9-9bd4-73c1cef1d65e",
+        "code": "503144413036",
+        "name": "Les Mystères du Nautilus",
+        "slug": "mysteres-nautilus",
+        "lat": 48.873461,
+        "lon": 2.779596,
+        "kind": "expo",
+        "osmName": "Les Mystères du Nautilus"
+      },
+      {
+        "uuid": "ef45fc1a-4b0e-4e8f-898b-d0685552f2a5",
+        "code": "503144413037",
+        "name": "Orbitron®",
+        "slug": "orbitron",
+        "lat": 48.873563,
+        "lon": 2.778384,
+        "kind": "amusement_ride",
+        "osmName": "Orbitron®"
+      },
+      {
+        "uuid": "f3d3328f-ccc1-42cd-b73b-3e40e744b859",
+        "code": "503141413033",
+        "name": "Le Passage Enchanté d'Aladdin",
+        "slug": "passage-enchante-aladdin",
+        "lat": 48.872448,
+        "lon": 2.775496,
+        "osmName": "Le Passage Enchanté d'Aladdin"
+      },
+      {
+        "uuid": "9b7b6c60-1a4d-47ca-a5ca-0b4efd006f69",
+        "code": "50314e413039",
+        "name": "Le Pays des Contes de Fées, presented by Vittel",
+        "slug": "pays-contes-fees-presented-by-vittel",
+        "lat": 48.875343,
+        "lon": 2.774695,
+        "kind": "amusement_ride",
+        "osmName": "Le Pays des Contes de Fées, présenté par Vittel"
+      },
+      {
+        "uuid": "582d1e5a-3d80-4f4b-b19c-cb1b76de50bb",
+        "code": "50314e413130",
+        "name": "Peter Pan's Flight",
+        "slug": "peter-pan-s-flight",
+        "lat": 48.873757,
+        "lon": 2.773746,
+        "kind": "dark_ride",
+        "osmName": "Peter Pan's Flight"
+      },
+      {
+        "uuid": "33c0c850-7914-4664-b15e-61985bdee8c9",
+        "code": "503152413033",
+        "name": "Phantom Manor",
+        "slug": "phantom-manor",
+        "lat": 48.870337,
+        "lon": 2.777227,
+        "kind": "dark_ride",
+        "osmName": "Phantom Manor"
+      },
+      {
+        "uuid": "86df0907-0707-423d-b651-a4906d0313eb",
+        "code": "503141413038",
+        "name": "Pirate Galleon",
+        "slug": "pirate-galleon",
+        "lat": 48.872909,
+        "lon": 2.773736,
+        "osmName": "Pirate Galleon"
+      },
+      {
+        "uuid": "7f680d5f-d340-40a4-9cb7-6fa00b4869f9",
+        "code": "503141413035",
+        "name": "Pirates' Beach",
+        "slug": "pirates-beach",
+        "lat": 48.872709,
+        "lon": 2.773716,
+        "kind": "playground",
+        "osmName": "Pirates' Beach"
+      },
+      {
+        "uuid": "9ab03b74-a62e-4ed5-b89a-05977438bcaa",
+        "code": "503141413034",
+        "name": "Pirates of the Caribbean",
+        "slug": "pirates-of-caribbean",
+        "lat": 48.873837,
+        "lon": 2.772517,
+        "kind": "dark_ride",
+        "osmName": "Pirates of the Caribbean"
+      },
+      {
+        "uuid": "d6b9db62-2dd9-4c70-b8cd-52be01c9f4a2",
+        "code": "503152413035",
+        "name": "Rustler Roundup Shootin' Gallery",
+        "slug": "rustler-roundup-shootin-gallery",
+        "lat": 48.871497,
+        "lon": 2.775526,
+        "osmName": "Rustler Roundup Shootin' Gallery"
+      },
+      {
+        "uuid": "75975337-58a9-4c8b-8b86-39dc30e7ee96",
+        "code": "503144413039",
+        "name": "Star Tours: The Adventures Continue",
+        "slug": "star-tours-adventures-continue",
+        "lat": 48.87491,
+        "lon": 2.779051,
+        "kind": "amusement_ride",
+        "osmName": "Star Tours : L'Aventure Continue"
+      },
+      {
+        "uuid": "2d619148-5f3e-42df-a920-90a396d2b777",
+        "code": "503144413038",
+        "name": "Star Wars Hyperspace Mountain",
+        "slug": "star-wars-hyperspace-mountain",
+        "lat": 48.874072,
+        "lon": 2.779286,
+        "kind": "roller_coaster",
+        "osmName": "Star Wars Hyperspace Mountain"
+      },
+      {
+        "uuid": "0aab1609-602e-4414-9159-1062e0ad2794",
+        "code": "5031444130382d73696e676c65",
+        "name": "Star Wars Hyperspace Mountain (Single Rider)",
+        "slug": "star-wars-hyperspace-mountain-single-rider",
+        "lat": 48.874072,
+        "lon": 2.779286,
+        "kind": "roller_coaster",
+        "osmName": "Star Wars Hyperspace Mountain"
+      },
+      {
+        "uuid": "d6abd70d-a3c1-424b-80a4-88ce51a6fc99",
+        "code": "50314e413132",
+        "name": "La Tanière du Dragon",
+        "slug": "taniere-dragon",
+        "lat": 48.873053,
+        "lon": 2.775773,
+        "osmName": "La Tanière du Dragon"
+      },
+      {
+        "uuid": "4a2c03ac-4177-49d4-9f26-71eac9508d5a",
+        "code": "503152413036",
+        "name": "Thunder Mesa Riverboat Landing",
+        "slug": "thunder-mesa-riverboat-landing",
+        "lat": 48.870277,
+        "lon": 2.775174,
+        "kind": "boat_ride",
+        "osmName": "Thunder Mesa Riverboat Landing"
+      },
+      {
+        "uuid": "b48765b4-0e53-4fe4-af4e-5e01d918240c",
+        "code": "50314e413133",
+        "name": "Les Voyages de Pinocchio",
+        "slug": "voyages-pinocchio",
+        "lat": 48.873372,
+        "lon": 2.775017,
+        "kind": "dark_ride",
+        "osmName": "Les Voyages de Pinocchio"
+      }
+    ],
+    "disneyadventureworld": [
+      {
+        "uuid": "f359b60c-69d9-4130-905e-ee9b8479e301",
+        "code": "503241433031",
+        "name": "Avengers Assemble: Flight Force",
+        "slug": "avengers-assemble-flight-force",
+        "lat": 48.864511,
+        "lon": 2.779949,
+        "kind": "roller_coaster",
+        "osmName": "Avengers Assemble: Flight Force"
+      },
+      {
+        "uuid": "b2fcdc6b-897f-479d-9d5d-a001c167b1ba",
+        "code": "5032414330312d73696e676c65",
+        "name": "Avengers Assemble: Flight Force (Single Rider)",
+        "slug": "avengers-assemble-flight-force-single-rider",
+        "lat": 48.864511,
+        "lon": 2.779949,
+        "kind": "roller_coaster",
+        "osmName": "Avengers Assemble: Flight Force"
+      },
+      {
+        "uuid": "711f7355-355e-4a3c-897a-bd95b9a51ea3",
+        "code": "503258413032",
+        "name": "Cars Quatre Roues Rallye",
+        "slug": "cars-quatre-roues-rallye",
+        "lat": 48.867689,
+        "lon": 2.778041,
+        "kind": "amusement_ride",
+        "osmName": "Cars Quatre Roues Rallye"
+      },
+      {
+        "uuid": "c98dce50-4c27-40f0-9f63-253913ee5a60",
+        "code": "503258413030",
+        "name": "Cars ROAD TRIP",
+        "slug": "cars-road-trip",
+        "lat": 48.866472,
+        "lon": 2.774791,
+        "kind": "amusement_ride",
+        "osmName": "Cars ROAD TRIP"
+      },
+      {
+        "uuid": "26e370c1-b2b7-456f-8068-3c6776bc28a7",
+        "code": "503258413033",
+        "name": "Crush's Coaster",
+        "slug": "crush-s-coaster",
+        "lat": 48.868111,
+        "lon": 2.77789,
+        "kind": "roller_coaster",
+        "osmName": "Crush's Coaster"
+      },
+      {
+        "uuid": "71a21c5d-a889-4586-9ccc-2346ec4af3d1",
+        "code": "5032584130332d73696e676c65",
+        "name": "Crush's Coaster (Single Rider)",
+        "slug": "crush-s-coaster-single-rider",
+        "lat": 48.868111,
+        "lon": 2.77789,
+        "kind": "roller_coaster",
+        "osmName": "Crush's Coaster"
+      },
+      {
+        "uuid": "bcb1e442-f777-4fc5-97ea-fb2aca4cb9ad",
+        "code": "503245413030",
+        "name": "Frozen Ever After",
+        "slug": "frozen-ever-after",
+        "lat": 48.863953,
+        "lon": 2.772987,
+        "kind": "log_flume",
+        "osmName": "Frozen Ever After"
+      },
+      {
+        "uuid": "aee8c697-f653-4b37-bfc9-3079a5e1c417",
+        "code": "5032454130302d73696e676c65",
+        "name": "Frozen Ever After (Single Rider)",
+        "slug": "frozen-ever-after-single-rider",
+        "lat": 48.863953,
+        "lon": 2.772987,
+        "kind": "log_flume",
+        "osmName": "Frozen Ever After"
+      },
+      {
+        "uuid": "ac473683-3141-40b8-b40e-a365d5909ca7",
+        "code": "503244413030",
+        "name": "Raiponce Tangled Spin",
+        "slug": "raiponce-tangled-spin",
+        "lat": 48.866256,
+        "lon": 2.776437,
+        "kind": "amusement_ride",
+        "osmName": "Raiponce Tangled Spin"
+      },
+      {
+        "uuid": "b8eabb99-fe70-4c8a-900c-b47f9f5eb9d4",
+        "code": "503258413039",
+        "name": "Ratatouille : L’Aventure Totalement Toquée de Rémy",
+        "slug": "ratatouille-aventure-totalement-toquee-remy",
+        "lat": 48.867962,
+        "lon": 2.775708,
+        "kind": "dark_ride",
+        "osmName": "Ratatouille : L'Aventure totalement toquée de Rémy"
+      },
+      {
+        "uuid": "374fe277-4607-43b9-acf0-f8c7508d3f6c",
+        "code": "5032584130392d73696e676c65",
+        "name": "Ratatouille : L’Aventure Totalement Toquée de Rémy (Single Rider)",
+        "slug": "ratatouille-aventure-totalement-toquee-remy-single-rider",
+        "lat": 48.867962,
+        "lon": 2.775708,
+        "kind": "dark_ride",
+        "osmName": "Ratatouille : L'Aventure totalement toquée de Rémy"
+      },
+      {
+        "uuid": "3e5ede90-adb7-4788-a4c2-437fb9aca381",
+        "code": "503258413036",
+        "name": "RC Racer",
+        "slug": "rc-racer",
+        "lat": 48.866827,
+        "lon": 2.776421,
+        "kind": "roller_coaster",
+        "osmName": "RC Racer"
+      },
+      {
+        "uuid": "209887d9-88f7-4b73-b9dc-3df563056431",
+        "code": "5032584130362d73696e676c65",
+        "name": "RC Racer (Single Rider)",
+        "slug": "rc-racer-single-rider",
+        "lat": 48.866827,
+        "lon": 2.776421,
+        "kind": "roller_coaster",
+        "osmName": "RC Racer"
+      },
+      {
+        "uuid": "4d3d8d78-a63d-4996-9514-1c11306b477e",
+        "code": "503258413038",
+        "name": "Slinky® Dog Zigzag Spin",
+        "slug": "slinky-dog-zigzag-spin",
+        "lat": 48.867109,
+        "lon": 2.776745,
+        "kind": "amusement_ride",
+        "osmName": "Slinky® Dog Zigzag Spin"
+      },
+      {
+        "uuid": "86993b1c-bf8e-4516-93ef-41b43326f0f7",
+        "code": "503241433032",
+        "name": "Spider-Man W.E.B. Adventure",
+        "slug": "spider-man-w-e-b-adventure",
+        "lat": 48.865951,
+        "lon": 2.779093,
+        "osmName": "Spider-Man W.E.B. Adventure"
+      },
+      {
+        "uuid": "3aefb886-40b8-4910-a251-321ad6d5f1cf",
+        "code": "5032414330322d73696e676c65",
+        "name": "Spider-Man W.E.B. Adventure (Single Rider)",
+        "slug": "spider-man-w-e-b-adventure-single-rider",
+        "lat": 48.865951,
+        "lon": 2.779093,
+        "osmName": "Spider-Man W.E.B. Adventure"
+      },
+      {
+        "uuid": "a66e1b7c-5f10-4fac-abe8-e769aa5756ee",
+        "code": "503258413035",
+        "name": "Les Tapis Volants - Flying Carpets Over Agrabah®",
+        "slug": "tapis-volants-flying-carpets-over-agrabah",
+        "lat": 48.86828,
+        "lon": 2.778364,
+        "kind": "amusement_ride",
+        "osmName": "Les Tapis Volants - Flying Carpets Over Agrabah®"
+      },
+      {
+        "uuid": "6f7d6505-272b-4ca2-85f7-2c75e5e64096",
+        "code": "503258413037",
+        "name": "Toy Soldiers Parachute Drop",
+        "slug": "toy-soldiers-parachute-drop",
+        "lat": 48.867119,
+        "lon": 2.777418,
+        "kind": "drop_tower",
+        "osmName": "Toy Soldiers Parachute Drop"
+      },
+      {
+        "uuid": "d86b7381-f571-49c8-ab42-31c48afe6b04",
+        "code": "5032584130372d73696e676c65",
+        "name": "Toy Soldiers Parachute Drop (Single Rider)",
+        "slug": "toy-soldiers-parachute-drop-single-rider",
+        "lat": 48.867119,
+        "lon": 2.777418,
+        "kind": "drop_tower",
+        "osmName": "Toy Soldiers Parachute Drop"
+      },
+      {
+        "uuid": "ccf69d75-e094-4420-84bb-bb33ee287b76",
+        "code": "50325a413032",
+        "name": "The Twilight Zone Tower of Terror",
+        "slug": "twilight-zone-tower-of-terror",
+        "lat": 48.866426,
+        "lon": 2.778638,
+        "kind": "drop_tower",
+        "osmName": "The Twilight Zone Tower of Terror"
+      }
+    ],
+    "futuroscope": [
+      {
+        "uuid": "83645522-31cd-43f3-9db0-f9c6fd6ee9c8",
+        "code": "3637",
+        "name": "Aces in the Sky",
+        "slug": "aces-in-sky"
+      },
+      {
+        "uuid": "286ae2d6-55ba-4961-9ca9-6db764829752",
+        "code": "3233",
+        "name": "Futuropolis",
+        "slug": "futuropolis",
+        "lat": 46.668783,
+        "lon": 0.368461,
+        "kind": "playground",
+        "osmName": "L'Aéroport de Futuropolis",
+        "nameFr": "L'Aéroport de Futuropolis"
+      },
+      {
+        "uuid": "8e79ab36-490a-4818-86fc-9ae73b044238",
+        "code": "3234",
+        "name": "Arthur, the 4D adventure",
+        "slug": "arthur-4d-adventure",
+        "lat": 46.671605,
+        "lon": 0.371927,
+        "kind": "yes",
+        "osmName": "Arthur, l'aventure 4D",
+        "nameFr": "Arthur, l'aventure 4D"
+      },
+      {
+        "uuid": "c9a5f45e-7e64-4e46-98d5-67d2be9f2344",
+        "code": "3232",
+        "name": "Budding Drivers",
+        "slug": "budding-drivers"
+      },
+      {
+        "uuid": "b8eaee89-e144-4923-9dda-a2d1f436d3af",
+        "code": "3531",
+        "name": "The Centrifuge",
+        "slug": "centrifuge",
+        "lat": 46.668239,
+        "lon": 0.369143,
+        "kind": "amusement_ride",
+        "osmName": "La Centrifugeuse",
+        "nameFr": "La Centrifugeuse"
+      },
+      {
+        "uuid": "bb47dca7-22d7-4dd0-bbca-5fea6a3d9272",
+        "code": "31",
+        "name": "Tornado Chasers",
+        "slug": "tornado-chasers",
+        "lat": 46.672067,
+        "lon": 0.37124,
+        "osmName": "Chasseurs de Tornades",
+        "nameFr": "Chasseurs de Tornades"
+      },
+      {
+        "uuid": "847fae7f-227d-471d-a266-47d767dd2e0a",
+        "code": "3139",
+        "name": "Dances with Robots",
+        "slug": "dances-with-robots",
+        "lat": 46.670511,
+        "lon": 0.371989,
+        "osmName": "Danse avec les Robots",
+        "nameFr": "Danse avec les Robots"
+      },
+      {
+        "uuid": "2cc0c930-e31f-4aba-bdda-701079da768a",
+        "code": "3437",
+        "name": "Dynamic!",
+        "slug": "dynamic",
+        "lat": 46.669505,
+        "lon": 0.367016,
+        "osmName": "Dynamic !",
+        "nameFr": "Dynamic !"
+      },
+      {
+        "uuid": "2d57a5ee-be6d-496c-88be-8fceac506d6b",
+        "code": "3137",
+        "name": "The Extraordinary Journey",
+        "slug": "extraordinary-journey",
+        "lat": 46.668607,
+        "lon": 0.366214,
+        "osmName": "L'Extraordinaire Voyage",
+        "nameFr": "L'Extraordinaire Voyage"
+      },
+      {
+        "uuid": "25029614-2089-4da4-9eb3-1d8032d5c82f",
+        "code": "3339",
+        "name": "Fledgling Firefighters",
+        "slug": "fledgling-firefighters"
+      },
+      {
+        "uuid": "ee93887c-da9f-4fa7-bb62-d8e5440b0993",
+        "code": "3439",
+        "name": "The Gravity Tower",
+        "slug": "gravity-tower"
+      },
+      {
+        "uuid": "0438ab2d-ad00-4700-87ae-9db91a0fe1ae",
+        "code": "333339",
+        "name": "The Greenhouse of Worlds",
+        "slug": "greenhouse-of-worlds"
+      },
+      {
+        "uuid": "425ddc94-a522-4e36-a459-f80370d73f61",
+        "code": "3738",
+        "name": "The Gyrotour",
+        "slug": "gyrotour",
+        "lat": 46.671453,
+        "lon": 0.368404,
+        "osmName": "Gyrotour",
+        "nameFr": "Gyrotour"
+      },
+      {
+        "uuid": "a50a1601-b08c-4b8a-a664-34ad76aed0f5",
+        "code": "3230",
+        "name": "Hydro Dynamo",
+        "slug": "hydro-dynamo",
+        "lat": 46.668416,
+        "lon": 0.367927,
+        "kind": "amusement_ride",
+        "osmName": "Hydro Dynamo"
+      },
+      {
+        "uuid": "e3126843-d085-4eae-bee6-27b0d85418d4",
+        "code": "323039",
+        "name": "Lumberjacks river",
+        "slug": "lumberjacks-river"
+      },
+      {
+        "uuid": "fe048054-e0ad-4dae-9460-274f63b955db",
+        "code": "3431",
+        "name": "Upside Down House",
+        "slug": "upside-down-house",
+        "lat": 46.670909,
+        "lon": 0.371709,
+        "osmName": "La Maison à l'envers",
+        "nameFr": "La Maison à l'envers"
+      },
+      {
+        "uuid": "38d1c472-6b3e-480e-92b2-914b225a7b88",
+        "code": "333139",
+        "name": "Mission Bermudes",
+        "slug": "mission-bermudes",
+        "lat": 46.667674,
+        "lon": 0.366677,
+        "osmName": "Mission Bermudes"
+      },
+      {
+        "uuid": "7beb3d0c-4fdc-40e4-a45f-9fea1394f5a7",
+        "code": "32",
+        "name": "Destination Mars",
+        "slug": "destination-mars",
+        "lat": 46.671908,
+        "lon": 0.370309,
+        "osmName": "Objectif Mars",
+        "nameFr": "Objectif Mars"
+      },
+      {
+        "uuid": "ea694cc1-ea92-4c26-8ff1-67972c6acfd4",
+        "code": "3530",
+        "name": "The Pendulum",
+        "slug": "pendulum"
+      },
+      {
+        "uuid": "54be7cc2-538a-4cb9-9ec1-305dc2f8efac",
+        "code": "333435",
+        "name": "Pulse ! The Electric Odyssey",
+        "slug": "pulse-electric-odyssey"
+      },
+      {
+        "uuid": "d9ec846e-08b7-4f40-8a44-ac55f8010898",
+        "code": "3231",
+        "name": "Rescue Academy",
+        "slug": "rescue-academy"
+      },
+      {
+        "uuid": "34211b36-5396-454d-bda5-d0a029903eeb",
+        "code": "3435",
+        "name": "Splash Adventure",
+        "slug": "splash-adventure"
+      },
+      {
+        "uuid": "bf9e2f32-14d3-4208-b387-5bce41f2e076",
+        "code": "3332",
+        "name": "The Time Machine",
+        "slug": "time-machine"
+      },
+      {
+        "uuid": "df307129-2753-4983-bb39-ef3f874e3cc2",
+        "code": "3532",
+        "name": "Turbo Splash",
+        "slug": "turbo-splash",
+        "lat": 46.668004,
+        "lon": 0.368933,
+        "kind": "log_flume",
+        "osmName": "Le Turbo Splash",
+        "nameFr": "Le Turbo Splash"
+      },
+      {
+        "uuid": "55f851b0-fabc-4a2d-b9ae-2f8038e06742",
+        "code": "3731",
+        "name": "Vélodrôle",
+        "slug": "velodrole",
+        "lat": 46.668005,
+        "lon": 0.367868,
+        "kind": "log_flume",
+        "osmName": "Le Vélodrôle",
+        "nameFr": "Le Vélodrôle"
+      },
+      {
+        "uuid": "6f060f81-4408-476f-b5d5-46266ff96d30",
+        "code": "3636",
+        "name": "The Wings of Da Vinci",
+        "slug": "wings-of-da-vinci"
+      }
+    ],
+    "nigloland": [
+      {
+        "uuid": "c92d6872-5a5e-41f8-8cf6-0987e5cfce33",
+        "code": "3133",
+        "name": "Africa Cruise",
+        "slug": "africa-cruise"
+      },
+      {
+        "uuid": "2862d6ea-ec4e-4ba5-87b2-13922f6a75d4",
+        "code": "3339",
+        "name": "Air Meeting",
+        "slug": "air-meeting",
+        "lat": 48.263151,
+        "lon": 4.614935,
+        "kind": "amusement_ride",
+        "osmName": "Air Meeting"
+      },
+      {
+        "uuid": "18146cf7-1b20-4304-83df-54e4b198c85b",
+        "code": "3430",
+        "name": "Alpina Blitz",
+        "slug": "alpina-blitz",
+        "lat": 48.261773,
+        "lon": 4.614916,
+        "kind": "roller_coaster",
+        "osmName": "Alpina Blitz"
+      },
+      {
+        "uuid": "8142ab41-cb5b-44d2-abb3-f84e51739924",
+        "code": "3337",
+        "name": "Apple Flight",
+        "slug": "apple-flight"
+      },
+      {
+        "uuid": "57b5bde3-fc46-4d72-b405-5f07485b2ec5",
+        "code": "38",
+        "name": "Caravelles de Jacques Cartier",
+        "slug": "caravelles-jacques-cartier",
+        "lat": 48.264299,
+        "lon": 4.617115,
+        "kind": "amusement_ride",
+        "osmName": "Les Caravelles de Jacques Cartier"
+      },
+      {
+        "uuid": "7f893148-104e-48b4-b2b7-0ca5d6049194",
+        "code": "31",
+        "name": "Chemin de Fer de Nigloland",
+        "slug": "chemin-fer-nigloland"
+      },
+      {
+        "uuid": "38debd2e-7f79-44f8-9d08-c1e559c9ef26",
+        "code": "33",
+        "name": "Chevauchée Fantastique",
+        "slug": "chevauchee-fantastique",
+        "lat": 48.264865,
+        "lon": 4.61624,
+        "osmName": "La Chevauchée Fantastique"
+      },
+      {
+        "uuid": "44a25161-2844-4db6-bd19-7f04688327c6",
+        "code": "39",
+        "name": "Circuit de Nigloland",
+        "slug": "circuit-nigloland",
+        "lat": 48.264221,
+        "lon": 4.616161,
+        "osmName": "Le Circuit de Nigloland"
+      },
+      {
+        "uuid": "b2ee6886-25f5-4548-86ec-71f8275f1ed2",
+        "code": "3239",
+        "name": "Dinosaures Aventure",
+        "slug": "dinosaures-aventure",
+        "lat": 48.263519,
+        "lon": 4.613474,
+        "kind": "amusement_ride",
+        "osmName": "Dinosaures Aventure"
+      },
+      {
+        "uuid": "d0373fc7-cc18-491a-83d0-7f4545ee81f4",
+        "code": "3432",
+        "name": "Donjon de l’Extrême",
+        "slug": "donjon-extreme",
+        "lat": 48.263757,
+        "lon": 4.615953,
+        "kind": "drop_tower",
+        "osmName": "Le Donjon de l'Extrême"
+      },
+      {
+        "uuid": "e95a44d8-737b-47e5-a1dc-992159c2a7f7",
+        "code": "3234",
+        "name": "L’Envol des Papillons",
+        "slug": "envol-papillons",
+        "lat": 48.262764,
+        "lon": 4.612979,
+        "kind": "dark_ride",
+        "osmName": "L'Envol des Papillons"
+      },
+      {
+        "uuid": "d5d34261-4003-427f-bd8d-976436fcdeb9",
+        "code": "3335",
+        "name": "Ferme d’Antonin",
+        "slug": "ferme-antonin"
+      },
+      {
+        "uuid": "3f03c093-69bd-4c20-b8fd-5247abefe499",
+        "code": "34",
+        "name": "Galion Pirate",
+        "slug": "galion-pirate",
+        "lat": 48.264787,
+        "lon": 4.616792,
+        "osmName": "Le Galion Pirate"
+      },
+      {
+        "uuid": "fa55177c-6a51-4669-8925-b5a7669f8f95",
+        "code": "36",
+        "name": "Goldmine Train",
+        "slug": "goldmine-train",
+        "lat": 48.263403,
+        "lon": 4.618039,
+        "osmName": "Gold Mine Train"
+      },
+      {
+        "uuid": "0636f233-d480-44f6-94ff-73435c1ea57e",
+        "code": "3336",
+        "name": "Grande Roue",
+        "slug": "grande-roue",
+        "lat": 48.262385,
+        "lon": 4.6146,
+        "kind": "big_wheel",
+        "osmName": "La Grande Roue"
+      },
+      {
+        "uuid": "2c4b6a1c-a165-4b94-a793-d68109d854ff",
+        "code": "3333",
+        "name": "Grizzli",
+        "slug": "grizzli",
+        "lat": 48.262597,
+        "lon": 4.617035,
+        "osmName": "Le Grizzli"
+      },
+      {
+        "uuid": "a2b2dd9d-2389-4548-8170-ed256d7c6747",
+        "code": "3233",
+        "name": "Hérissons de la Forêt Magique",
+        "slug": "herissons-foret-magique"
+      },
+      {
+        "uuid": "5c817ae2-4e52-43ba-a995-c50f87945b30",
+        "code": "3231",
+        "name": "Juke Box",
+        "slug": "juke-box",
+        "lat": 48.262599,
+        "lon": 4.615507,
+        "kind": "amusement_ride",
+        "osmName": "Juke Box"
+      },
+      {
+        "uuid": "ea62f7ec-d3b5-481b-9b45-711e56901898",
+        "code": "3332",
+        "name": "King Of Mississippi",
+        "slug": "king-of-mississippi",
+        "lat": 48.263512,
+        "lon": 4.617034,
+        "osmName": "King of Mississippi"
+      },
+      {
+        "uuid": "578e5c1e-23be-4803-91f1-d0dede186708",
+        "code": "3433",
+        "name": "KRAMPUS EXPEDITION",
+        "slug": "krampus-expedition",
+        "lat": 48.261528,
+        "lon": 4.613963,
+        "kind": "roller_coaster",
+        "osmName": "Krampus Expédition"
+      },
+      {
+        "uuid": "e7906810-1bee-4c95-aec4-021cd1b4211f",
+        "code": "3338",
+        "name": "Maison de Niglo",
+        "slug": "maison-niglo"
+      },
+      {
+        "uuid": "2c39d218-f6c6-49a4-9752-8a6b31d59e5d",
+        "code": "3131",
+        "name": "Manoir Hanté",
+        "slug": "manoir-hante",
+        "lat": 48.263241,
+        "lon": 4.615895,
+        "kind": "dark_ride",
+        "osmName": "Le Manoir Hanté"
+      },
+      {
+        "uuid": "a0fcfbb3-9932-4df2-a96d-44eafcbda8d9",
+        "code": "3132",
+        "name": "Montgolfières",
+        "slug": "montgolfieres",
+        "lat": 48.263518,
+        "lon": 4.61498,
+        "kind": "amusement_ride",
+        "osmName": "Le Voyage en Montgolfières"
+      },
+      {
+        "uuid": "96844832-051b-4249-a33c-e874350aaf03",
+        "code": "3238",
+        "name": "Noisette Express",
+        "slug": "noisette-express",
+        "lat": 48.262186,
+        "lon": 4.612851,
+        "kind": "roller_coaster",
+        "osmName": "Noisette Express"
+      },
+      {
+        "uuid": "14f26262-f407-4486-a9e9-b26b1ea7698b",
+        "code": "3136",
+        "name": "P’tit Poucet",
+        "slug": "p-tit-poucet",
+        "lat": 48.262865,
+        "lon": 4.614079,
+        "kind": "amusement_ride",
+        "osmName": "Le P'tit Poucet"
+      },
+      {
+        "uuid": "768a0750-c2ff-4b6e-8692-201c5c916e82",
+        "code": "37",
+        "name": "Rivière Canadienne",
+        "slug": "riviere-canadienne",
+        "lat": 48.263731,
+        "lon": 4.617564,
+        "osmName": "La Rivière Canadienne"
+      },
+      {
+        "uuid": "e0b21210-0af8-4427-8293-e8ad557de037",
+        "code": "3135",
+        "name": "Rivière des Fées",
+        "slug": "riviere-fees",
+        "lat": 48.263009,
+        "lon": 4.614517,
+        "kind": "water_slide",
+        "osmName": "La Rivière des Fées"
+      },
+      {
+        "uuid": "bedcbfb8-9d70-4071-b7c1-375c5ea4b1d4",
+        "code": "3236",
+        "name": "Ronde des Canards",
+        "slug": "ronde-canards",
+        "lat": 48.26237,
+        "lon": 4.613853,
+        "osmName": "Ronde des Canards"
+      },
+      {
+        "uuid": "d0fbcf72-9711-4473-90aa-fa7c3d7b845b",
+        "code": "3137",
+        "name": "Route 66",
+        "slug": "route-66",
+        "lat": 48.262569,
+        "lon": 4.61496,
+        "osmName": "Route 66"
+      },
+      {
+        "uuid": "b94c354e-5fdc-4241-b148-3834b84f66ee",
+        "code": "3334",
+        "name": "Schlitt’ Express",
+        "slug": "schlitt-express"
+      },
+      {
+        "uuid": "748bf180-9b42-489a-9aa5-d02d18bc6a37",
+        "code": "3139",
+        "name": "Spatiale Experience",
+        "slug": "spatiale-experience",
+        "lat": 48.2622,
+        "lon": 4.616131,
+        "osmName": "Spatiale Expérience"
+      },
+      {
+        "uuid": "23df2e02-36f3-41f1-8230-de0b4da9e41c",
+        "code": "3130",
+        "name": "Tacots 1900",
+        "slug": "tacots-1900",
+        "lat": 48.264477,
+        "lon": 4.615276,
+        "osmName": "Les Tacots 1900"
+      },
+      {
+        "uuid": "e3ab2f5f-26d3-4439-becd-c402ea8d9171",
+        "code": "3431",
+        "name": "Tour des Petits Fantômes",
+        "slug": "tour-petits-fantomes",
+        "lat": 48.263897,
+        "lon": 4.616016,
+        "kind": "drop_tower",
+        "osmName": "La Tour des Petits Fantômes"
+      },
+      {
+        "uuid": "2d7a55e0-f81d-4991-928d-7298104396fd",
+        "code": "3235",
+        "name": "Zabeilles",
+        "slug": "zabeilles",
+        "lat": 48.26302,
+        "lon": 4.613304,
+        "kind": "amusement_ride",
+        "osmName": "Les Zabeilles"
+      }
     ]
   }
 }

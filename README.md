@@ -36,7 +36,7 @@ npm run dev
 
 ### Deux sources, un seul instantané
 
-Aucune API gratuite ne couvre les trois parcs, donc chaque parc déclare la
+Aucune API gratuite ne couvre les sept parcs, donc chaque parc déclare la
 sienne dans `src/lib/parks.ts` :
 
 | Parc | Source | Ce qu'on obtient |
@@ -149,9 +149,13 @@ Hébergé sur Vercel, déployé à chaque push sur `main`.
 
 ## Limites connues
 
-- « L'Aventure Astérix » et « Repar'Ta Kar » (Walibi) n'ont pas de position :
-  aucune donnée OpenStreetMap. Elles sont listées sous la carte plutôt que
-  placées au hasard.
+- 21 attractions sur 221 n'ont pas de position : aucune donnée OpenStreetMap
+  sous un nom reconnaissable. Elles sont listées sous la carte plutôt que
+  placées au hasard. Le Futuroscope est le plus touché (12 sur 26) — ses
+  attractions récentes et couvertes ne sont pas encore cartographiées.
+- Le Futuroscope sert une ligne sans nom ni identifiant ; elle est écartée à la
+  lecture (`fetchWartezeitenSnapshot`) et par le générateur. Sans ça, le schéma
+  la rejetait et la page entière tombait en 502.
 - Walibi Rhône-Alpes n'a ni horaires d'ouverture ni indice d'affluence, et ses
   attractions sont seulement « ouverte » ou « fermée » : Queue-Times ne publie
   rien de plus. Si wartezeiten.app ajoute le parc un jour, il suffira de changer
