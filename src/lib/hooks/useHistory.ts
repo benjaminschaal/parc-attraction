@@ -44,10 +44,12 @@ async function loadDay(park: ParkId, date: string): Promise<DayHistory> {
   };
 }
 
-export function useHistoryDay(park: ParkId, date: string) {
+/** `date` may be null while the first snapshot is still in flight. */
+export function useHistoryDay(park: ParkId, date: string | null) {
   return useQuery({
     queryKey: ["history", park, date],
-    queryFn: () => loadDay(park, date),
+    queryFn: () => loadDay(park, date!),
+    enabled: date != null,
     staleTime: 60_000,
   });
 }

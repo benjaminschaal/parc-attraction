@@ -48,8 +48,14 @@ export default function ParkView({
   );
   useHistoryRecorder(data);
 
-  const today = parkDay(new Date(), park.timeZone);
-  const { data: todayHistory } = useHistoryDay(park.id, today);
+  // The day the current reading belongs to, not the wall-clock day: parks
+  // close in the evening and the API keeps serving that last reading all
+  // night, so "today" would come up empty and drop every sparkline and trend.
+  const readingStamp = data?.updatedAt ?? data?.fetchedAt ?? null;
+  const readingDay = readingStamp
+    ? parkDay(new Date(readingStamp), park.timeZone)
+    : null;
+  const { data: readingDayHistory } = useHistoryDay(park.id, readingDay);
   const { favorites, toggle } = useFavorites(park.id);
 
   const attractions = data?.attractions ?? [];
@@ -110,7 +116,7 @@ export default function ParkView({
           <div className="flex flex-col gap-4">
             <AttractionList
               attractions={attractions}
-              history={todayHistory}
+              history={readingDayHistory}
               timeZone={park.timeZone}
               favorites={favorites}
               onToggleFavorite={toggle}
@@ -157,6 +163,7 @@ export default function ParkView({
             attractions.find((a) => a.uuid === sheet.uuid) ?? sheet
           }
           park={park}
+          day={readingDay ?? ""}
           updatedAt={data?.updatedAt ?? null}
           onClose={() => setSheet(null)}
           onShowOnMap={(a) => {

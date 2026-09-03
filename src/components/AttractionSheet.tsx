@@ -22,6 +22,8 @@ import StatusPill from "@/components/ui/StatusPill";
 interface AttractionSheetProps {
   attraction: Attraction;
   park: Park;
+  /** Calendar day the current reading belongs to, `YYYY-MM-DD`. */
+  day: string;
   /** Timestamp of the reading being shown, ISO 8601. */
   updatedAt: string | null;
   onClose: () => void;
@@ -31,12 +33,13 @@ interface AttractionSheetProps {
 export default function AttractionSheet({
   attraction,
   park,
+  day: date,
   updatedAt,
   onClose,
   onShowOnMap,
 }: AttractionSheetProps) {
   const today = parkDay(new Date(), park.timeZone);
-  const { data: day } = useHistoryDay(park.id, today);
+  const { data: day } = useHistoryDay(park.id, date || null);
   const { data: recentDays } = useRecentDays(park.id);
 
   useEffect(() => {
@@ -120,7 +123,9 @@ export default function AttractionSheet({
         </div>
 
         <section className="mt-5">
-          <h3 className="mb-2 text-sm font-medium">Aujourd&apos;hui</h3>
+          <h3 className="mb-2 text-sm font-medium">
+            {date === today ? "Aujourd'hui" : "Dernière journée relevée"}
+          </h3>
           <TimeChart
             series={[
               {
@@ -132,7 +137,9 @@ export default function AttractionSheet({
                 fill: true,
               },
             ]}
-            nowMinutes={parkMinutes(new Date(), park.timeZone)}
+            nowMinutes={
+              date === today ? parkMinutes(new Date(), park.timeZone) : null
+            }
           />
           {recorded.length > 1 && (
             <dl className="mt-2 grid grid-cols-3 gap-2 text-center">
