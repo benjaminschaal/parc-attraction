@@ -2,7 +2,7 @@
 /**
  * Appends one wait-time snapshot per park to the shared history store.
  *
- * Run by `.github/workflows/collect-history.yml` every 30 minutes: it checks
+ * Run by `.github/workflows/collect-history.yml` every 5 minutes: it checks
  * out the `history` branch into $HISTORY_DIR, runs this script, and commits
  * whatever changed. Neither wait-time API exposes anything but the *current*
  * wait times, so this is the only way to accumulate a history that also covers
