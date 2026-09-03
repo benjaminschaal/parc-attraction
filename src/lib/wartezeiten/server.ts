@@ -1,13 +1,13 @@
 import "server-only";
 
-import { getPark, type ParkId } from "@/lib/parks";
+import type { Park } from "@/lib/parks";
 import { getGeoData } from "@/lib/attractions";
+import type { Attraction, ParkSnapshot } from "@/lib/snapshot";
 import {
   crowdLevelSchema,
   openingTimesSchema,
   waitingTimesSchema,
 } from "./schema";
-import type { Attraction, ParkSnapshot } from "./types";
 
 const API_BASE = "https://api.wartezeiten.app/v1";
 
@@ -40,20 +40,21 @@ async function call(
 }
 
 /** Fetches wait times, opening hours and crowd level for a park in one go. */
-export async function fetchParkSnapshot(park: ParkId): Promise<ParkSnapshot> {
-  const config = getPark(park);
-  if (!config) throw new Error(`Unknown park: ${park}`);
-
+export async function fetchWartezeitenSnapshot(
+  park: Park,
+  parkId: string,
+  language: string,
+): Promise<ParkSnapshot> {
   // Only the wait times are essential — a park with no crowd-level or
   // opening-hours data should still render its queue list.
   const [waiting, opening, crowd] = await Promise.all([
-    call("waitingtimes", { park, language: config.apiLanguage }),
-    call("openingtimes", { park }).catch(() => null),
-    call("crowdlevel", { park }).catch(() => null),
+    call("waitingtimes", { park: parkId, language }),
+    call("openingtimes", { park: parkId }).catch(() => null),
+    call("crowdlevel", { park: parkId }).catch(() => null),
   ]);
 
   const rows = waitingTimesSchema.parse(waiting);
-  const geo = getGeoData(park);
+  const geo = getGeoData(park.id);
 
   const attractions: Attraction[] = rows.map((row) => {
     const g = geo.get(row.uuid);
@@ -75,7 +76,7 @@ export async function fetchParkSnapshot(park: ParkId): Promise<ParkSnapshot> {
   const level = crowd ? crowdLevelSchema.parse(crowd) : null;
 
   return {
-    park,
+    park: park.id,
     fetchedAt: new Date().toISOString(),
     updatedAt: rows[0]?.datetime ?? null,
     opening: hours

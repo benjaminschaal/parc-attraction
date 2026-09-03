@@ -1,8 +1,13 @@
 # Historique des files d'attente : ce qu'on peut récupérer, et où le stocker
 
 > Note d'architecture — septembre 2026. Répond à deux questions : peut-on
-> récupérer l'historique des deux parcs, et faut-il passer à une vraie base de
+> récupérer l'historique des parcs suivis, et faut-il passer à une vraie base de
 > données (Supabase ou autre) en restant sur des offres gratuites.
+>
+> **Mise à jour :** l'app suit désormais trois parcs et interroge deux API.
+> Walibi Rhône-Alpes est absent des 46 parcs de wartezeiten.app, il passe par
+> Queue-Times — voir le README. Cela ne change rien aux conclusions ci-dessous :
+> Queue-Times ne publie pas plus d'historique que wartezeiten.app.
 
 ---
 
@@ -46,15 +51,15 @@ flowchart LR
 
 | Source | Historique disponible ? | Utilisable ici ? |
 | --- | --- | --- |
-| **wartezeiten.app** | Non. Les quatre endpoints (`parks`, `waitingtimes`, `openingtimes`, `crowdlevel`) ne renvoient que l'instant présent. | — |
-| **queue-times.com** | Oui côté site : une base depuis 2014, avec des pages de stats pour le Parc Astérix (`/parks/9`) et Europa-Park (`/parks/51`). Mais **l'API gratuite est temps réel uniquement** (`/parks.json`, `/parks/{id}/queue_times.json`). | Seulement en scrapant les pages de stats : fragile, hors du cadre prévu par leurs conditions, et à recommencer à chaque refonte du site. |
+| **wartezeiten.app** | Non. Les quatre endpoints (`parks`, `waitingtimes`, `openingtimes`, `crowdlevel`) ne renvoient que l'instant présent. | Déjà utilisée pour le temps réel du Parc Astérix et d'Europa-Park. |
+| **queue-times.com** | Oui côté site : une base depuis 2014, avec des pages de stats pour le Parc Astérix (`/parks/9`), Europa-Park (`/parks/51`) et Walibi Rhône-Alpes (`/parks/301`). Mais **l'API gratuite est temps réel uniquement** (`/parks.json`, `/parks/{id}/queue_times.json`). | Utilisée pour le temps réel de Walibi Rhône-Alpes. Pour l'historique : seulement en scrapant les pages de stats — fragile, hors du cadre prévu par leurs conditions, et à recommencer à chaque refonte du site. |
 | **thrill-data.com** | Oui, affiche des courbes historiques pour le Parc Astérix. | Même réserve : pas d'API, extraction non prévue. |
 | **Jeux de données ouverts** | Il en existe (TouringPlans, DisneylandData…) — mais **uniquement pour les parcs Disney et Universal**. Rien pour les deux parcs européens qui nous intéressent. | Non. |
 
 **Conclusion :** pas de rattrapage possible honnêtement. La bonne nouvelle,
-c'est que la partie « pour les 2 parcs » est déjà réglée :
-`scripts/collect-history.mjs` boucle sur `parcasterix` **et** `europapark`, et
-un échec sur l'un ne fait pas perdre l'instantané de l'autre.
+c'est que la couverture est déjà réglée : `scripts/collect-history.mjs` boucle
+sur les trois parcs, quelle que soit leur source, et un échec sur l'un ne fait
+pas perdre l'instantané des autres.
 
 ### Deux réglages gratuits qui changent tout
 
@@ -118,7 +123,8 @@ flowchart TD
 ### Ce que disent les mesures
 
 J'ai simulé 30 jours de collecte réelle (2 parcs × 28 relevés/jour × 76
-attractions, un commit par relevé), puis mesuré le dépôt Git :
+attractions, un commit par relevé), puis mesuré le dépôt Git. Le troisième parc
+ajoute 27 attractions, soit environ +35 % — les ordres de grandeur tiennent :
 
 | Mesure | Valeur |
 | --- | --- |

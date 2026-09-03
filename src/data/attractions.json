@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-02",
+  "generatedAt": "2026-09-03",
   "source": "OpenStreetMap (ODbL) via Overpass API + manual curation",
   "parks": {
     "parcasterix": [
@@ -761,6 +761,274 @@
         "lon": 7.718991,
         "kind": "roller_coaster",
         "osmName": "WODAN - Timburcoaster"
+      }
+    ],
+    "walibirhonealpes": [
+      {
+        "uuid": "qt-16326",
+        "code": "16326",
+        "name": "AirBoat",
+        "slug": "airboat",
+        "lat": 45.620597,
+        "lon": 5.571884,
+        "kind": "amusement_ride",
+        "osmName": "AirBoat"
+      },
+      {
+        "uuid": "qt-16327",
+        "code": "16327",
+        "name": "Balloon Race",
+        "slug": "balloon-race",
+        "lat": 45.620557,
+        "lon": 5.569639,
+        "kind": "amusement_ride",
+        "osmName": "Ballon Race"
+      },
+      {
+        "uuid": "qt-16320",
+        "code": "16320",
+        "name": "Bambooz River",
+        "slug": "bambooz-river",
+        "lat": 45.620902,
+        "lon": 5.572498,
+        "kind": "amusement_ride",
+        "osmName": "Bambooz River"
+      },
+      {
+        "uuid": "qt-16333",
+        "code": "16333",
+        "name": "Carrousel",
+        "slug": "carrousel",
+        "lat": 45.620304,
+        "lon": 5.570796,
+        "kind": "carousel",
+        "osmName": "Carrousel"
+      },
+      {
+        "uuid": "qt-16334",
+        "code": "16334",
+        "name": "La Chevauchée",
+        "slug": "chevauchee",
+        "lat": 45.622168,
+        "lon": 5.56837,
+        "kind": "amusement_ride",
+        "osmName": "La Chevauchée"
+      },
+      {
+        "uuid": "qt-16337",
+        "code": "16337",
+        "name": "La Coccinelle",
+        "slug": "coccinelle",
+        "lat": 45.622414,
+        "lon": 5.57161,
+        "kind": "roller_coaster",
+        "osmName": "La Coccinelle"
+      },
+      {
+        "uuid": "qt-16336",
+        "code": "16336",
+        "name": "Concert'O",
+        "slug": "concert-o",
+        "lat": 45.622559,
+        "lon": 5.568491,
+        "kind": "log_flume",
+        "osmName": "Concert'O"
+      },
+      {
+        "uuid": "qt-16330",
+        "code": "16330",
+        "name": "Dock'N Roll",
+        "slug": "dock-n-roll",
+        "lat": 45.62089,
+        "lon": 5.569782,
+        "kind": "amusement_ride",
+        "osmName": "Dock'N Roll"
+      },
+      {
+        "uuid": "qt-16316",
+        "code": "16316",
+        "name": "Festival Station",
+        "slug": "festival-station",
+        "lat": 45.620025,
+        "lon": 5.570621,
+        "kind": "train",
+        "osmName": "Festival City Station"
+      },
+      {
+        "uuid": "qt-16339",
+        "code": "16339",
+        "name": "Generator",
+        "slug": "generator",
+        "lat": 45.622034,
+        "lon": 5.56894,
+        "kind": "roller_coaster",
+        "osmName": "Generator"
+      },
+      {
+        "uuid": "qt-16324",
+        "code": "16324",
+        "name": "Gold River",
+        "slug": "gold-river",
+        "lat": 45.622933,
+        "lon": 5.5688,
+        "kind": "river_rafting",
+        "osmName": "Gold River"
+      },
+      {
+        "uuid": "qt-16335",
+        "code": "16335",
+        "name": "Hurricane",
+        "slug": "hurricane",
+        "lat": 45.621343,
+        "lon": 5.570289,
+        "kind": "swing_carousel",
+        "osmName": "Hurricane"
+      },
+      {
+        "uuid": "qt-16328",
+        "code": "16328",
+        "name": "Mahuka",
+        "slug": "mahuka",
+        "lat": 45.622009,
+        "lon": 5.572334,
+        "kind": "roller_coaster",
+        "osmName": "Mahuka"
+      },
+      {
+        "uuid": "qt-16321",
+        "code": "16321",
+        "name": "Melody Road",
+        "slug": "melody-road",
+        "lat": 45.620894,
+        "lon": 5.571374,
+        "kind": "amusement_ride",
+        "osmName": "Melody Road"
+      },
+      {
+        "uuid": "qt-16338",
+        "code": "16338",
+        "name": "MonORail",
+        "slug": "monorail",
+        "lat": 45.622633,
+        "lon": 5.568981,
+        "kind": "train",
+        "osmName": "MonORail"
+      },
+      {
+        "uuid": "qt-16318",
+        "code": "16318",
+        "name": "Mystic",
+        "slug": "mystic",
+        "lat": 45.619805,
+        "lon": 5.571392,
+        "kind": "roller_coaster",
+        "osmName": "Mystic"
+      },
+      {
+        "uuid": "qt-16340",
+        "code": "16340",
+        "name": "On Air",
+        "slug": "on-air",
+        "lat": 45.622031,
+        "lon": 5.570901,
+        "kind": "amusement_ride",
+        "osmName": "On Air"
+      },
+      {
+        "uuid": "qt-16332",
+        "code": "16332",
+        "name": "Les P'tits Chaudrons",
+        "slug": "p-tits-chaudrons",
+        "lat": 45.620187,
+        "lon": 5.572113,
+        "kind": "amusement_ride",
+        "osmName": "Les Ptits Chaudrons"
+      },
+      {
+        "uuid": "qt-16322",
+        "code": "16322",
+        "name": "Le Petit Vapeur",
+        "slug": "petit-vapeur",
+        "lat": 45.620782,
+        "lon": 5.571197,
+        "kind": "amusement_ride",
+        "osmName": "Le Petit Vapeur"
+      },
+      {
+        "uuid": "qt-16646",
+        "code": "16646",
+        "name": "Repar'Ta Kar",
+        "slug": "repar-ta-kar"
+      },
+      {
+        "uuid": "qt-16323",
+        "code": "16323",
+        "name": "Surf Music",
+        "slug": "surf-music",
+        "lat": 45.621436,
+        "lon": 5.56869,
+        "kind": "amusement_ride",
+        "osmName": "Surf Music"
+      },
+      {
+        "uuid": "qt-16341",
+        "code": "16341",
+        "name": "Tiki Academy",
+        "slug": "tiki-academy",
+        "lat": 45.621593,
+        "lon": 5.571251,
+        "kind": "amusement_ride",
+        "osmName": "Tiki Academy"
+      },
+      {
+        "uuid": "qt-16329",
+        "code": "16329",
+        "name": "Timber",
+        "slug": "timber",
+        "lat": 45.622467,
+        "lon": 5.566985,
+        "kind": "roller_coaster",
+        "osmName": "Timber"
+      },
+      {
+        "uuid": "qt-16331",
+        "code": "16331",
+        "name": "Le Totem",
+        "slug": "totem",
+        "lat": 45.620104,
+        "lon": 5.57225,
+        "kind": "drop_tower",
+        "osmName": "Le Totem"
+      },
+      {
+        "uuid": "qt-16317",
+        "code": "16317",
+        "name": "Volt-O-Vent",
+        "slug": "volt-o-vent",
+        "lat": 45.622678,
+        "lon": 5.567481,
+        "kind": "amusement_ride",
+        "osmName": "Volt-O-Vent"
+      },
+      {
+        "uuid": "qt-16325",
+        "code": "16325",
+        "name": "W.A.B Band Tour",
+        "slug": "w-a-b-band-tour",
+        "lat": 45.622302,
+        "lon": 5.569345,
+        "kind": "train",
+        "osmName": "W.A.B Band Tour"
+      },
+      {
+        "uuid": "qt-16319",
+        "code": "16319",
+        "name": "Woodstock Express",
+        "slug": "woodstock-express",
+        "lat": 45.622351,
+        "lon": 5.567751,
+        "kind": "roller_coaster",
+        "osmName": "WoodStock Express"
       }
     ]
   }

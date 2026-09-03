@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { isParkId } from "@/lib/parks";
-import { fetchParkSnapshot } from "@/lib/wartezeiten/server";
+import { fetchParkSnapshot } from "@/lib/sources";
 
 /**
  * Server-side proxy for the Wartezeiten.APP API, which sends no CORS headers

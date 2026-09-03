@@ -1,7 +1,8 @@
-# Files d'attente — Parc Astérix & Europa-Park
+# Files d'attente — Parc Astérix, Europa-Park & Walibi Rhône-Alpes
 
-Webapp de suivi des temps d'attente, construite sur l'API publique de
-[wartezeiten.app](https://api.wartezeiten.app/).
+Webapp de suivi des temps d'attente, construite sur deux API publiques :
+[wartezeiten.app](https://api.wartezeiten.app/) et
+[Queue-Times](https://queue-times.com/).
 
 - **Attentes en direct** — temps d'attente par attraction, statut (ouverte,
   entretien, file virtuelle, fermée météo/gel), tri, recherche, favoris,
@@ -14,9 +15,10 @@ Webapp de suivi des temps d'attente, construite sur l'API publique de
   classement des attractions les plus chargées, « journée type » heure par
   heure, et par attraction sa courbe du jour et ses moyennes.
 
-Parcs couverts : Parc Astérix (France) et Europa-Park (Allemagne). Ajouter un
-parc = une entrée dans `src/lib/parks.ts` + une passe de
-`scripts/build-attractions-dataset.py`.
+Parcs couverts : Parc Astérix (France), Europa-Park (Allemagne) et
+Walibi Rhône-Alpes (Les Avenières, Isère). Ajouter un parc = une entrée dans
+`src/lib/parks.ts`, la même dans `scripts/build-attractions-dataset.py` et
+`scripts/collect-history.mjs`, puis une passe du générateur de données.
 
 ## Développement
 
@@ -27,6 +29,29 @@ npm run dev
 
 ## Comment ça marche
 
+### Deux sources, un seul instantané
+
+Aucune API gratuite ne couvre les trois parcs, donc chaque parc déclare la
+sienne dans `src/lib/parks.ts` :
+
+| Parc | Source | Ce qu'on obtient |
+| --- | --- | --- |
+| Parc Astérix | wartezeiten.app (`parcasterix`) | attentes, statut détaillé, horaires, affluence |
+| Europa-Park | wartezeiten.app (`europapark`) | idem |
+| Walibi Rhône-Alpes | Queue-Times (parc `301`) | attentes et ouvert/fermé, **rien d'autre** |
+
+`src/lib/sources.ts` aiguille vers le bon lecteur et normalise les deux formats
+en un `ParkSnapshot` unique (`src/lib/snapshot.ts`). Pour Walibi, `opening` et
+`crowdLevel` valent `null` : l'en-tête masque simplement la jauge d'affluence et
+les horaires.
+
+Walibi Rhône-Alpes ne figure pas dans les 46 parcs de wartezeiten.app — vérifié
+en interrogeant `/v1/parks`. C'est la seule raison de la deuxième source.
+
+**Crédit obligatoire.** Les conditions de Queue-Times imposent d'afficher
+« Powered by Queue-Times.com » avec un lien vers le site. C'est la mention en
+pied de page pour ce parc ; ne pas la reformuler.
+
 ### Le proxy est obligatoire
 
 L'API wartezeiten.app **n'envoie aucun en-tête CORS** : elle est injoignable
@@ -34,12 +59,15 @@ depuis le navigateur. Toutes les données passent par
 `src/app/api/park/[park]/route.ts`, qui appelle les trois endpoints
 (`waitingtimes`, `openingtimes`, `crowdlevel`) et renvoie un instantané unique.
 L'API limite à 100 requêtes/minute avec blocage de 15 minutes au-delà, donc les
-réponses sont mises en cache côté serveur et côté CDN.
+réponses sont mises en cache côté serveur et côté CDN. Queue-Times se
+rafraîchit toutes les 5 minutes et demande de ne pas interroger plus vite : son
+cache serveur est calé sur cette durée.
 
 ### Les coordonnées GPS ne viennent pas de l'API
 
-L'API ne publie aucune position. `src/data/attractions.json` associe chaque
-`uuid` d'attraction à des coordonnées OpenStreetMap (licence ODbL), récupérées
+Aucune des deux API ne publie de position. `src/data/attractions.json` associe
+chaque identifiant d'attraction — l'`uuid` de wartezeiten.app, ou `qt-<id>` côté
+Queue-Times — à des coordonnées OpenStreetMap (licence ODbL), récupérées
 via Overpass et complétées à la main pour la dizaine d'attractions qu'OSM nomme
 autrement. Le fond de carte est [OpenFreeMap](https://openfreemap.org/) (pas de
 clé API).
@@ -55,14 +83,16 @@ attractions sans GPS — à relire avant de committer.
 
 ### Les noms français
 
-L'API ne parle que `de` et `en`. Pour le Parc Astérix, la réponse `de` conserve
+wartezeiten.app ne parle que `de` et `en` (Queue-Times sert déjà les noms
+français pour un parc français). Pour le Parc Astérix, la réponse `de` conserve
 les noms français d'origine ; pour Europa-Park, les libellés français sont dans
 `attractions.json` (`nameFr`).
 
 ### L'historique
 
-L'API ne publie que l'instant présent. L'historique est donc constitué par
-l'app elle-même, depuis deux sources fusionnées par horodatage :
+Aucune des deux API ne publie autre chose que l'instant présent. L'historique
+est donc constitué par l'app elle-même, depuis deux sources fusionnées par
+horodatage :
 
 1. **Local (IndexedDB)** — chaque relevé reçu pendant que l'app est ouverte est
    enregistré sur l'appareil, conservé 120 jours. Aucune donnée ne sort du
@@ -101,8 +131,13 @@ Hébergé sur Vercel, déployé à chaque push sur `main`.
 
 ## Limites connues
 
-- « L'Aventure Astérix » n'a pas de position : aucune donnée OpenStreetMap. Elle
-  est listée sous la carte plutôt que placée au hasard.
+- « L'Aventure Astérix » et « Repar'Ta Kar » (Walibi) n'ont pas de position :
+  aucune donnée OpenStreetMap. Elles sont listées sous la carte plutôt que
+  placées au hasard.
+- Walibi Rhône-Alpes n'a ni horaires d'ouverture ni indice d'affluence, et ses
+  attractions sont seulement « ouverte » ou « fermée » : Queue-Times ne publie
+  rien de plus. Si wartezeiten.app ajoute le parc un jour, il suffira de changer
+  son `source` dans `src/lib/parks.ts`.
 - Pas encore de service worker : l'app est installable (manifeste + icônes) mais
   ne fonctionne pas hors-ligne.
 - Les données sont fournies sans garantie par wartezeiten.app.

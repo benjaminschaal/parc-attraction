@@ -3,7 +3,7 @@
 import { del, get, keys, set } from "idb-keyval";
 import { getPark, type ParkId } from "@/lib/parks";
 import { parkDay } from "@/lib/format";
-import type { ParkSnapshot } from "@/lib/wartezeiten/types";
+import type { ParkSnapshot } from "@/lib/snapshot";
 
 /**
  * The Wartezeiten API only exposes the *current* wait times, so the app builds
@@ -78,7 +78,9 @@ export async function recordSnapshot(
 
   if (day.points.at(-1)?.t === stamp) return null;
 
-  const w: Record<string, number> = {};
+  // Null-prototype: `w` is keyed by ids a source gave us, and "__proto__" on
+  // an object literal would set the prototype instead of storing the wait.
+  const w: Record<string, number> = Object.create(null);
   const x: string[] = [];
   for (const a of snapshot.attractions) {
     if (a.status === "opened") w[a.uuid] = a.waitingTime;

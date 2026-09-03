@@ -2,7 +2,7 @@
 
 import { useQuery } from "@tanstack/react-query";
 import type { ParkId } from "@/lib/parks";
-import type { ParkSnapshot } from "@/lib/wartezeiten/types";
+import type { ParkSnapshot } from "@/lib/snapshot";
 
 const REFRESH_MS = 60_000;
 

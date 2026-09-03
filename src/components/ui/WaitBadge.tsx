@@ -1,5 +1,5 @@
 import { waitColor } from "@/lib/format";
-import type { RideStatus } from "@/lib/wartezeiten/types";
+import type { RideStatus } from "@/lib/snapshot";
 
 /**
  * The wait time, or a dash for anything that isn't running. Sized so the list

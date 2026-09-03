@@ -5,7 +5,7 @@ import { LngLatBounds, Map as MapLibreMap, Marker, setWorkerUrl } from "maplibre
 import "maplibre-gl/dist/maplibre-gl.css";
 import { kindIcon, waitColor } from "@/lib/format";
 import type { Park } from "@/lib/parks";
-import type { Attraction } from "@/lib/wartezeiten/types";
+import type { Attraction } from "@/lib/snapshot";
 import StatusPill from "@/components/ui/StatusPill";
 
 // OpenFreeMap: free vector tiles, no API key, no usage cap.

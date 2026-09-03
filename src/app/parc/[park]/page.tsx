@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import { getPark, PARKS } from "@/lib/parks";
-import { fetchParkSnapshot } from "@/lib/wartezeiten/server";
+import { fetchParkSnapshot } from "@/lib/sources";
 import ParkView from "@/components/ParkView";
 import type { Metadata } from "next";
 
