@@ -61,29 +61,33 @@ c'est que la couverture est déjà réglée : `scripts/collect-history.mjs` bouc
 sur les sept parcs, quelle que soit leur source, et un échec sur l'un ne fait
 pas perdre l'instantané des autres.
 
-### Deux réglages gratuits qui changent tout
+### Deux réglages gratuits — faits
 
-Ce sont eux, et pas Supabase, qui limitent l'historique aujourd'hui :
+Ce sont eux, et pas Supabase, qui limitaient l'historique. **Le dépôt est passé
+en public le 3 septembre 2026**, ce qui a réglé les deux d'un coup.
 
-**a) Le dépôt est privé — donc l'app ne peut pas relire ce qu'elle collecte.**
-Sans jeton, `/api/history` tape sur `raw.githubusercontent.com`, qui répond 404
-sur un dépôt privé. Le job accumule consciencieusement des données que l'app ne
-voit jamais : l'onglet Historique n'affiche que l'album du téléphone.
-→ Soit ajouter `HISTORY_GITHUB_TOKEN` dans Vercel (procédure dans le README),
-soit **passer le dépôt en public**.
+**a) La lecture.** Sur un dépôt privé, `/api/history` tapait sur
+`raw.githubusercontent.com`, qui répond 404 — le job accumulait
+consciencieusement des données que l'app ne voyait jamais. En public, les deux
+lectures passent sans jeton : `raw` pour un fichier de jour, l'API contents
+pour lister les jours. `HISTORY_GITHUB_TOKEN` n'est plus qu'un confort (60 →
+5 000 requêtes/heure), et les caches nous en tiennent loin.
 
-**b) La cadence est bridée par les minutes Actions.** 28 exécutions/jour à une
-minute facturée = 840 des 2 000 minutes/mois offertes sur un dépôt privé. D'où
-le relevé toutes les 30 minutes, alors que l'API se rafraîchit toutes les
-5 minutes : **on jette 5 mesures sur 6**.
-→ Sur un dépôt **public**, les minutes Actions sont illimitées. La même
-collecte pourrait passer à `*/10` ou `*/5`, et le jeton devient inutile.
+**b) La cadence.** Sur un dépôt privé, chaque exécution est facturée à la minute
+entière commencée : 28/jour = 840 des 2 000 minutes/mois. D'où le relevé toutes
+les 30 minutes, alors que les API se rafraîchissent toutes les 5 — **on jetait
+5 mesures sur 6**. En public, les minutes sont illimitées : la collecte tourne
+désormais en `*/5`, soit la finesse maximale utile.
 
-Le dépôt ne contient aucun secret (vérifié : ni `.env`, ni clé, ni jeton en
-clair ; le workflow n'utilise que le `GITHUB_TOKEN` éphémère fourni par Actions,
-et n'a aucun déclencheur `pull_request_target`). Le passer en public ne coûte
-donc rien côté sécurité — c'est même le seul geste qui débloque à la fois la
-lecture, la cadence et le jeton.
+Le dépôt ne contenait aucun secret (vérifié avant le basculement : ni `.env`, ni
+clé, ni jeton en clair ; le workflow n'utilise que le `GITHUB_TOKEN` éphémère
+fourni par Actions, et n'a aucun déclencheur `pull_request_target`).
+
+**Le revers, à surveiller.** Six fois plus de relevés, c'est six fois plus de
+poids côté lecture. Un fichier de jour du Parc Astérix passe de 47 ko à ~280 ko,
+et la « journée type » — sept fichiers d'un coup — de 330 ko à **1,9 Mo**. C'est
+précisément la limite n° 1 du tableau ci-dessous, et elle arrive six fois plus
+vite qu'avant. Redescendre à `*/10` la ramène sous le mégaoctet.
 
 ---
 
@@ -145,7 +149,7 @@ la branche tient des décennies.** Ce n'est pas pour ça qu'il faudra migrer.
 | --- | --- | --- | --- |
 | 1 | **Lecture : 1 requête HTTP par journée** | « Journée type » plafonnée à 7 jours (`useRecentDays`) — c'est déjà un contournement | Vouloir la journée type sur 3 mois = 90 requêtes, ~4,4 Mo téléchargés sur mobile |
 | 2 | **Aucune requête possible** | Toute la statistique est calculée dans le navigateur, après téléchargement | « Cette attraction, les samedis, en août » devient inatteignable |
-| 3 | **Cadence 30 min** | 840/2 000 min Actions consommées | Ajouter un 3ᵉ parc, ou passer à 5 min, dépasse le quota (dépôt privé) |
+| 3 | **Cadence** | `*/5`, minutes Actions illimitées (dépôt public) | Plus une limite — mais chaque relevé alourdit la lecture, voir la limite n° 1 |
 | 4 | **Latence** | commit → CDN raw (~5 min) + `revalidate: 300` | Le « direct » n'est pas concerné (il vient de l'API), donc peu grave |
 
 ### Les options gratuites, comparées
@@ -196,7 +200,7 @@ elle est utile, et l'historique long tient dans 500 Mo pendant plus de dix ans.
 ```mermaid
 flowchart TD
     START["Envie d'un meilleur historique"] --> FIX{"Les deux réglages<br/>gratuits sont-ils faits ?"}
-    FIX -->|Non| DO["1. Dépôt public<br/>   (ou HISTORY_GITHUB_TOKEN dans Vercel)<br/>2. Cadence à */10 ou */5"]
+    FIX -->|Non| DO["1. Dépôt public ✓ fait<br/>2. Cadence à */5 ✓ fait"]
     DO --> WAIT["Laisser tourner<br/>quelques semaines"]
     FIX -->|Oui| TRIG{"Un de ces besoins<br/>est-il réel ?"}
     WAIT --> TRIG
@@ -213,9 +217,8 @@ flowchart TD
 
 **Dans l'ordre :**
 
-1. **Rendre la collecte lisible** — dépôt public, ou `HISTORY_GITHUB_TOKEN` dans
-   Vercel. Sans ça, tout le reste est théorique : le job collecte dans le vide.
-2. **Monter la cadence** une fois le dépôt public (`*/10`, voire `*/5`).
+1. ~~**Rendre la collecte lisible**~~ — fait : dépôt public, lecture anonyme.
+2. ~~**Monter la cadence**~~ — fait : `*/5`, la finesse maximale utile.
 3. **Laisser vivre.** Avec un jour de données au compteur, migrer maintenant,
    c'est optimiser un problème qu'on n'a pas encore.
 4. **Migrer quand un des trois déclencheurs du schéma ci-dessus se produit** —

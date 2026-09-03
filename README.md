@@ -117,28 +117,35 @@ horodatage :
    téléphone. C'est pour ça que laisser l'app ouverte pendant la visite donne la
    journée complète.
 2. **Partagé (GitHub Actions)** — `.github/workflows/collect-history.yml` prend
-   un instantané toutes les 30 minutes entre 7h et 21h UTC et l'écrit dans la
+   un instantané toutes les 5 minutes entre 7h et 21h UTC et l'écrit dans la
    branche orpheline `history` du dépôt. `vercel.json` désactive les
    déploiements sur cette branche, donc ces commits ne déclenchent aucun build.
-   La cadence est calée pour tenir dans les 2 000 minutes Actions/mois offertes
-   sur un dépôt privé (28 exécutions/jour, facturées une minute chacune) ;
-   passer à `*/20` la ferait dépasser.
+   Cinq minutes est exactement la période de rafraîchissement des deux API :
+   descendre plus bas ne ramènerait rien de neuf, et Queue-Times demande de ne
+   pas le faire.
 
-Le second est lu par `/api/history`. **Ce dépôt étant privé**, la lecture de la
-branche `history` demande un jeton — à ajouter dans les variables
-d'environnement du projet Vercel :
+Le second est lu par `/api/history`. **Le dépôt étant public**, les deux
+lectures passent par `raw.githubusercontent.com`, sans jeton :
+
+- un **fichier de jour**, `<parc>/AAAA-MM-JJ.json` ;
+- la **liste des jours**, `<parc>/index.json`, que le collecteur réécrit à
+  chaque relevé. Lister un répertoire n'est pas quelque chose que `raw` sait
+  faire, et l'API qui le sait est plafonnée à **60 requêtes/heure par IP** sans
+  jeton — une IP qu'on partage avec tous les autres locataires de l'hébergeur.
+  Un index posé à côté des données évite le problème : même CDN, pas de quota.
+  L'API contents reste en repli pour les répertoires antérieurs à l'index.
 
 | Variable | Rôle |
 | --- | --- |
-| `HISTORY_GITHUB_TOKEN` | jeton en lecture seule sur le dépôt (permet aussi de lister les jours disponibles) |
+| `HISTORY_GITHUB_TOKEN` | **inutile depuis le passage en public** : ne sert qu'au repli via l'API contents, pour relever sa limite |
 | `HISTORY_REPO` | `owner/repo`, si différent de la valeur par défaut |
 | `HISTORY_BRANCH` | branche de stockage, `history` par défaut |
 
-Le jeton se crée sur
-[github.com/settings/personal-access-tokens](https://github.com/settings/personal-access-tokens)
-(fine-grained, ce seul dépôt, permission **Contents: read-only**). En attendant,
-l'app se rabat proprement sur l'historique local — la collecte, elle, tourne
-déjà et l'historique accumulé sera lisible rétroactivement dès l'ajout du jeton.
+**Si le dépôt repassait en privé**, il faudrait à la fois ajouter un jeton
+(fine-grained, ce seul dépôt, **Contents: read-only**, dans les variables
+d'environnement Vercel) et redescendre la cadence à `*/30` : les minutes
+Actions redeviennent facturées à la minute entière commencée, et `*/5`
+consommerait ~5 200 des 2 000 minutes/mois offertes.
 
 Ce que ce stockage sait faire, ce qui casserait en premier et quand il vaudrait
 la peine de passer à une vraie base de données : `docs/historique-et-stockage.md`.
