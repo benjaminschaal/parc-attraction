@@ -43,9 +43,45 @@ body {
   -webkit-tap-highlight-color: transparent;
 }
 
-/* Keeps the sticky header and the bottom tab bar clear of iOS safe areas. */
+/*
+ * On iOS the installed app is drawn *under* the status bar and the home
+ * indicator (`viewport-fit=cover` plus a translucent status bar), so anything
+ * that touches an edge of the screen has to reserve the inset itself. In a
+ * browser tab the insets are zero and these utilities are no-ops.
+ */
+.pad-safe-top {
+  padding-top: env(safe-area-inset-top);
+}
+
 .pad-safe-bottom {
   padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* Landscape: the notch eats into one side of the screen. */
+.pad-safe-x {
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+}
+
+/* A sticky bar has to stop below the status bar, not under it. */
+.stick-below-safe-top {
+  top: env(safe-area-inset-top);
+}
+
+/*
+ * The page still scrolls behind the status bar, so the inset needs an opaque
+ * strip of its own — without it the attraction list shows through the clock
+ * and the battery. The colour is the one already declared as `theme-color`.
+ */
+.safe-top-scrim {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 40;
+  height: env(safe-area-inset-top);
+  background: var(--background);
+  pointer-events: none;
 }
 
 @keyframes pulse-dot {

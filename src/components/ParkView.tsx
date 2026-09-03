@@ -61,7 +61,9 @@ export default function ParkView({
   const attractions = data?.attractions ?? [];
 
   return (
-    <div className="flex min-h-dvh flex-col">
+    <div className="flex min-h-dvh flex-col pad-safe-top pad-safe-x">
+      <div className="safe-top-scrim" aria-hidden />
+
       <ParkHeader
         park={park}
         snapshot={data}
@@ -69,7 +71,7 @@ export default function ParkView({
         onRefresh={() => void refetch()}
       />
 
-      <div className="sticky top-0 z-30 border-b border-border bg-background/92 backdrop-blur">
+      <div className="sticky stick-below-safe-top z-30 border-b border-border bg-background/92 backdrop-blur">
         <div
           role="tablist"
           aria-label="Vues"
@@ -94,7 +96,7 @@ export default function ParkView({
         </div>
       </div>
 
-      <main className="mx-auto w-full max-w-3xl flex-1 px-4 py-4 pad-safe-bottom">
+      <main className="mx-auto w-full max-w-3xl flex-1 px-4 py-4">
         {error && (
           <p className="mb-3 rounded-lg border border-rose-500/30 bg-rose-500/10 px-3 py-2 text-sm text-rose-700 dark:text-rose-300">
             {error.message}
@@ -144,7 +146,7 @@ export default function ParkView({
         )}
       </main>
 
-      <footer className="border-t border-border px-4 py-4 text-center text-[11px] text-muted">
+      <footer className="pad-safe-bottom border-t border-border px-4 py-4 text-center text-[11px] text-muted">
         Données fournies par{" "}
         <a
           href="https://www.wartezeiten.app/"
