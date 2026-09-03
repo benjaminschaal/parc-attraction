@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { RIDE_STATUSES } from "./types";
+import { RIDE_STATUSES } from "@/lib/snapshot";
 
 /**
  * Schemas are deliberately lenient: the upstream API occasionally ships new

@@ -1,4 +1,4 @@
-import type { RideStatus } from "@/lib/wartezeiten/types";
+import type { RideStatus } from "@/lib/snapshot";
 
 export const STATUS_LABEL: Record<RideStatus, string> = {
   opened: "Ouverte",

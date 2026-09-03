@@ -4,7 +4,7 @@ import { useMemo, useState } from "react";
 import { kindIcon, waitColor } from "@/lib/format";
 import { attractionSeries, trend } from "@/lib/history/series";
 import type { DayHistory } from "@/lib/history/localHistory";
-import type { Attraction } from "@/lib/wartezeiten/types";
+import type { Attraction } from "@/lib/snapshot";
 import Sparkline from "@/components/charts/Sparkline";
 import StatusPill from "@/components/ui/StatusPill";
 import TrendArrow from "@/components/ui/TrendArrow";

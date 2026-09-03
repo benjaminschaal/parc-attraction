@@ -8,7 +8,7 @@ import {
   relativeFromNow,
 } from "@/lib/format";
 import CrowdGauge from "@/components/ui/CrowdGauge";
-import type { ParkSnapshot } from "@/lib/wartezeiten/types";
+import type { ParkSnapshot } from "@/lib/snapshot";
 
 interface ParkHeaderProps {
   park: Park;

@@ -12,7 +12,7 @@ import {
   type DayHistory,
   type HistoryPoint,
 } from "@/lib/history/localHistory";
-import type { ParkSnapshot } from "@/lib/wartezeiten/types";
+import type { ParkSnapshot } from "@/lib/snapshot";
 
 /**
  * A day of history is the union of two sources: what this device recorded

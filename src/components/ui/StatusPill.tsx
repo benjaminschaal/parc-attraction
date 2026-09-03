@@ -1,5 +1,5 @@
 import { STATUS_SHORT } from "@/lib/format";
-import type { RideStatus } from "@/lib/wartezeiten/types";
+import type { RideStatus } from "@/lib/snapshot";
 
 const TONE: Record<RideStatus, string> = {
   opened: "bg-emerald-500/12 text-emerald-700 dark:text-emerald-300",

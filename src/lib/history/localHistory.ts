@@ -3,7 +3,7 @@
 import { del, get, keys, set } from "idb-keyval";
 import { getPark, type ParkId } from "@/lib/parks";
 import { parkDay } from "@/lib/format";
-import type { ParkSnapshot } from "@/lib/wartezeiten/types";
+import type { ParkSnapshot } from "@/lib/snapshot";
 
 /**
  * The Wartezeiten API only exposes the *current* wait times, so the app builds

@@ -18,7 +18,7 @@ import {
   rankAttractions,
   summariseDay,
 } from "@/lib/history/series";
-import type { Attraction } from "@/lib/wartezeiten/types";
+import type { Attraction } from "@/lib/snapshot";
 import HourlyBars from "@/components/charts/HourlyBars";
 import TimeChart from "@/components/charts/TimeChart";
 

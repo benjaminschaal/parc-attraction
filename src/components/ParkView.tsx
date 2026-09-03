@@ -7,7 +7,7 @@ import { parkDay } from "@/lib/format";
 import { useFavorites } from "@/lib/hooks/useFavorites";
 import { useHistoryDay, useHistoryRecorder } from "@/lib/hooks/useHistory";
 import { useParkSnapshot } from "@/lib/hooks/useParkSnapshot";
-import type { Attraction, ParkSnapshot } from "@/lib/wartezeiten/types";
+import type { Attraction, ParkSnapshot } from "@/lib/snapshot";
 import AttractionList from "@/components/AttractionList";
 import AttractionSheet from "@/components/AttractionSheet";
 import HistoryView from "@/components/HistoryView";

@@ -14,7 +14,7 @@ import {
 import type { Park } from "@/lib/parks";
 import { useHistoryDay, useRecentDays } from "@/lib/hooks/useHistory";
 import { attractionSeries, hourlyProfile } from "@/lib/history/series";
-import type { Attraction } from "@/lib/wartezeiten/types";
+import type { Attraction } from "@/lib/snapshot";
 import HourlyBars from "@/components/charts/HourlyBars";
 import TimeChart from "@/components/charts/TimeChart";
 import StatusPill from "@/components/ui/StatusPill";
