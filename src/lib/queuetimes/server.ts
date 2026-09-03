@@ -1,7 +1,7 @@
 import "server-only";
 
 import { getGeoData } from "@/lib/attractions";
-import type { Park, ParkId } from "@/lib/parks";
+import type { Park } from "@/lib/parks";
 import type { Attraction, ParkSnapshot } from "@/lib/snapshot";
 import { queueTimesSchema } from "./schema";
 
@@ -23,7 +23,7 @@ const TTL = 300;
 export const rideUuid = (id: number) => `qt-${id}`;
 
 export async function fetchQueueTimesSnapshot(
-  park: Park & { id: ParkId },
+  park: Park,
   parkId: number,
 ): Promise<ParkSnapshot> {
   const res = await fetch(`${API_BASE}/parks/${parkId}/queue_times.json`, {

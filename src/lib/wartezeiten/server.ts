@@ -1,6 +1,6 @@
 import "server-only";
 
-import type { Park, ParkId } from "@/lib/parks";
+import type { Park } from "@/lib/parks";
 import { getGeoData } from "@/lib/attractions";
 import type { Attraction, ParkSnapshot } from "@/lib/snapshot";
 import {
@@ -41,7 +41,7 @@ async function call(
 
 /** Fetches wait times, opening hours and crowd level for a park in one go. */
 export async function fetchWartezeitenSnapshot(
-  park: Park & { id: ParkId },
+  park: Park,
   parkId: string,
   language: string,
 ): Promise<ParkSnapshot> {
