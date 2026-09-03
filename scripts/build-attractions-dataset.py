@@ -2,11 +2,12 @@
 # -*- coding: utf-8 -*-
 """Regenerates src/data/attractions.json.
 
-The Wartezeiten.APP API carries no coordinates and only speaks de/en, so this
-script joins three sources:
+Neither wait-time API carries coordinates, and Wartezeiten.APP only speaks
+de/en, so this script joins three sources:
 
-  * the API's own attraction list (uuid, code, name) — the key everything hangs
-    off, since uuids are stable across renames;
+  * the wait-time API's own attraction list (uuid, code, name) — the key
+    everything hangs off, since those ids are stable across renames. Which API
+    depends on the park, exactly as in `src/lib/parks.ts`;
   * OpenStreetMap, queried through Overpass, for the GPS positions;
   * the manual tables below, for the handful of rides Overpass names
     differently and for Europa-Park's French labels.
@@ -28,6 +29,7 @@ import urllib.parse
 import urllib.request
 
 API = "https://api.wartezeiten.app/v1"
+QUEUE_TIMES = "https://queue-times.com"
 OVERPASS_MIRRORS = [
     "https://overpass.kumi.systems/api/interpreter",
     "https://overpass-api.de/api/interpreter",
@@ -37,10 +39,25 @@ OUT = os.path.join(
     "src/data/attractions.json",
 )
 
+# Keep in sync with `src/lib/parks.ts`: same ids, same sources.
 PARKS = {
-    # id: (api language for the name list, Overpass bounding box S,W,N,E)
-    "parcasterix": ("de", (49.1250, 2.5550, 49.1470, 2.5900)),
-    "europapark": ("en", (48.2530, 7.7050, 48.2760, 7.7400)),
+    "parcasterix": {
+        "source": ("wartezeiten", "parcasterix"),
+        # Language whose ride names we want to display.
+        "language": "de",
+        # Overpass bounding box, S,W,N,E.
+        "bbox": (49.1250, 2.5550, 49.1470, 2.5900),
+    },
+    "europapark": {
+        "source": ("wartezeiten", "europapark"),
+        "language": "en",
+        "bbox": (48.2530, 7.7050, 48.2760, 7.7400),
+    },
+    "walibirhonealpes": {
+        # Absent from Wartezeiten.APP; Queue-Times carries it as park 301.
+        "source": ("queuetimes", 301),
+        "bbox": (45.6180, 5.5650, 45.6250, 5.5760),
+    },
 }
 
 # Rides Overpass carries under a different name, or not at all under the name
@@ -57,6 +74,10 @@ MANUAL_COORDS = {
         "Le Petit Train": (49.134335, 2.571950, "train"),
         # "L'Aventure Astérix" has no OpenStreetMap feature: left without GPS,
         # the app lists it separately under the map.
+    },
+    "walibirhonealpes": {
+        # "Repar'Ta Kar" is too recent to be in OpenStreetMap: left without
+        # GPS, the app lists it separately under the map.
     },
     "europapark": {
         "Atlantis Adventure": (48.266270, 7.720209, "dark_ride"),               # Abenteuer Atlantis
@@ -112,6 +133,48 @@ def api_get(endpoint: str, headers: dict) -> list:
     )
     with urllib.request.urlopen(req, timeout=30) as r:
         return json.load(r)
+
+
+def queue_times(park_id: int) -> list:
+    """Rides for one Queue-Times park, flattened out of its `lands`."""
+    req = urllib.request.Request(
+        f"{QUEUE_TIMES}/parks/{park_id}/queue_times.json",
+        headers={"accept": "application/json", "user-agent": "parc-attraction/1.0"},
+    )
+    with urllib.request.urlopen(req, timeout=30) as r:
+        data = json.load(r)
+    rides = list(data.get("rides") or [])
+    for land in data.get("lands") or []:
+        rides.extend(land.get("rides") or [])
+    return rides
+
+
+def attraction_rows(park: str) -> list:
+    """`(uuid, code, name, localised name)` for a park, whatever its source.
+
+    Queue-Times has no notion of language: the ride names it serves for a
+    French park are already the French ones, so there is nothing to localise.
+    """
+    config = PARKS[park]
+    provider, park_id = config["source"]
+
+    if provider == "queuetimes":
+        return [
+            (f"qt-{row['id']}", str(row["id"]), row["name"], None)
+            for row in queue_times(park_id)
+        ]
+
+    english = api_get("waitingtimes", {"park": park_id, "language": "en"})
+    localised = {
+        row["uuid"]: row["name"]
+        for row in api_get(
+            "waitingtimes", {"park": park_id, "language": config["language"]}
+        )
+    }
+    return [
+        (row["uuid"], row["code"], row["name"], localised.get(row["uuid"]))
+        for row in english
+    ]
 
 
 def overpass(bbox) -> list:
@@ -199,26 +262,20 @@ def match(name: str, osm: dict):
 
 
 def build(park: str) -> list:
-    language, bbox = PARKS[park]
     print(f"### {park}")
-    attractions = api_get("waitingtimes", {"park": park, "language": "en"})
-    localised = {
-        row["uuid"]: row["name"]
-        for row in api_get("waitingtimes", {"park": park, "language": language})
-    }
-    osm = index_osm(overpass(bbox))
+    rows = attraction_rows(park)
+    osm = index_osm(overpass(PARKS[park]["bbox"]))
 
     entries, missing = [], []
-    for row in attractions:
-        name = row["name"]
+    for uuid, code, name, localised in rows:
         entry = {
-            "uuid": row["uuid"],
-            "code": row["code"],
+            "uuid": uuid,
+            "code": code,
             "name": name,
             "slug": normalise(name).replace(" ", "-"),
         }
 
-        french = FRENCH_NAMES.get(park, {}).get(name) or localised.get(row["uuid"])
+        french = FRENCH_NAMES.get(park, {}).get(name) or localised
         if french and french != name:
             entry["nameFr"] = french
 

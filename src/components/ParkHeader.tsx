@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { PARKS, type Park } from "@/lib/parks";
+import { getSource, PARKS, type Park } from "@/lib/parks";
 import {
   formatDateLong,
   formatTime,
@@ -48,7 +48,7 @@ export default function ParkHeader({
               <span aria-hidden className="mr-1.5">
                 {p.flag}
               </span>
-              {p.name}
+              {p.shortName}
             </Link>
           ))}
         </nav>
@@ -91,7 +91,7 @@ export default function ParkHeader({
             className={`inline-block size-1.5 rounded-full ${isFetching ? "live-dot bg-amber-500" : "bg-emerald-500"}`}
             aria-hidden
           />
-          Données wartezeiten.app
+          {getSource(park).credit}
           {snapshot?.updatedAt
             ? ` · relevé de ${formatTime(snapshot.updatedAt, park.timeZone)} (${relativeFromNow(snapshot.updatedAt)})`
             : ""}

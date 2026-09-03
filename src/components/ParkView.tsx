@@ -2,7 +2,7 @@
 
 import dynamic from "next/dynamic";
 import { useState } from "react";
-import type { Park } from "@/lib/parks";
+import { getSource, type Park } from "@/lib/parks";
 import { parkDay } from "@/lib/format";
 import { useFavorites } from "@/lib/hooks/useFavorites";
 import { useHistoryDay, useHistoryRecorder } from "@/lib/hooks/useHistory";
@@ -147,14 +147,13 @@ export default function ParkView({
       </main>
 
       <footer className="pad-safe-bottom border-t border-border px-4 py-4 text-center text-[11px] text-muted">
-        Données fournies par{" "}
         <a
-          href="https://www.wartezeiten.app/"
+          href={getSource(park).url}
           target="_blank"
           rel="noreferrer noopener"
           className="underline underline-offset-2"
         >
-          wartezeiten.app
+          {getSource(park).credit}
         </a>{" "}
         · sans garantie d&apos;exactitude
       </footer>
