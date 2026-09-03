@@ -19,8 +19,13 @@ const API_BASE = "https://queue-times.com";
  */
 const TTL = 300;
 
-/** Ride ids are integers, namespaced so they cannot collide with a uuid. */
-export const rideUuid = (id: number) => `qt-${id}`;
+/**
+ * Ride ids are plain integers, so they get a prefix: it keeps them from
+ * colliding with a Wartezeiten uuid and makes a history point's provenance
+ * obvious. `scripts/collect-history.mjs` and
+ * `scripts/build-attractions-dataset.py` build the same string.
+ */
+const rideUuid = (id: number) => `qt-${id}`;
 
 export async function fetchQueueTimesSnapshot(
   park: Park,

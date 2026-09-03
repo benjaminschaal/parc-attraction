@@ -65,7 +65,9 @@ async function readSource(source) {
     ];
     if (rides.length === 0) return null;
 
-    const w = {};
+    // Null-prototype: `w` is keyed by ids an API gave us, and "__proto__" on
+    // an object literal would set the prototype instead of storing the wait.
+    const w = Object.create(null);
     const x = [];
     for (const ride of rides) {
       // Ids are namespaced exactly as in src/lib/queuetimes/server.ts, so the
@@ -99,7 +101,7 @@ async function readSource(source) {
   }).catch(() => null);
   const level = Array.isArray(crowd) ? crowd[0] : crowd;
 
-  const w = {};
+  const w = Object.create(null);
   const x = [];
   for (const row of rows) {
     if (row.status === "opened") w[row.uuid] = row.waitingtime ?? 0;
