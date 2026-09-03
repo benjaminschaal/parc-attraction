@@ -69,12 +69,16 @@ l'app elle-même, depuis deux sources fusionnées par horodatage :
    téléphone. C'est pour ça que laisser l'app ouverte pendant la visite donne la
    journée complète.
 2. **Partagé (GitHub Actions)** — `.github/workflows/collect-history.yml` prend
-   un instantané toutes les 20 minutes entre 7h et 22h UTC et l'écrit dans la
+   un instantané toutes les 30 minutes entre 7h et 21h UTC et l'écrit dans la
    branche orpheline `history` du dépôt. `vercel.json` désactive les
    déploiements sur cette branche, donc ces commits ne déclenchent aucun build.
+   La cadence est calée pour tenir dans les 2 000 minutes Actions/mois offertes
+   sur un dépôt privé (28 exécutions/jour, facturées une minute chacune) ;
+   passer à `*/20` la ferait dépasser.
 
-Le second est lu par `/api/history`. Pour un dépôt **public** il n'y a rien à
-configurer. Pour un dépôt **privé**, ajouter dans Vercel :
+Le second est lu par `/api/history`. **Ce dépôt étant privé**, la lecture de la
+branche `history` demande un jeton — à ajouter dans les variables
+d'environnement du projet Vercel :
 
 | Variable | Rôle |
 | --- | --- |
@@ -82,7 +86,11 @@ configurer. Pour un dépôt **privé**, ajouter dans Vercel :
 | `HISTORY_REPO` | `owner/repo`, si différent de la valeur par défaut |
 | `HISTORY_BRANCH` | branche de stockage, `history` par défaut |
 
-Sans jeton, l'app se rabat proprement sur l'historique local.
+Le jeton se crée sur
+[github.com/settings/personal-access-tokens](https://github.com/settings/personal-access-tokens)
+(fine-grained, ce seul dépôt, permission **Contents: read-only**). En attendant,
+l'app se rabat proprement sur l'historique local — la collecte, elle, tourne
+déjà et l'historique accumulé sera lisible rétroactivement dès l'ajout du jeton.
 
 ## Déploiement
 

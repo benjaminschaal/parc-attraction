@@ -6,8 +6,10 @@ name: Collect wait-time history
 # `vercel.json`, so these commits never trigger a deployment.
 on:
   schedule:
-    # Every 20 minutes between 07:00 and 21:59 UTC (parks are shut outside).
-    - cron: "*/20 7-21 * * *"
+    # Every 30 minutes between 07:00 and 20:59 UTC — parks are shut outside
+    # that window, and the cadence keeps a private repository inside the free
+    # 2 000 Actions-minutes/month (28 runs/day, billed one minute each).
+    - cron: "*/30 7-20 * * *"
   workflow_dispatch:
 
 concurrency:
@@ -23,12 +25,15 @@ jobs:
     steps:
       - name: Checkout scripts
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
 
       - name: Checkout history branch
         uses: actions/checkout@v4
         with:
           ref: history
           path: history-data
+          fetch-depth: 1
         continue-on-error: true
 
       - name: Create history branch on first run
