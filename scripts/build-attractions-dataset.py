@@ -139,6 +139,8 @@ FRENCH_NAMES = {
 
 def normalise(name: str) -> str:
     """Folds accents, articles and OSM's trailing '(12)' suffixes away."""
+    if not name:
+        return ""
     s = unicodedata.normalize("NFKD", name)
     s = "".join(c for c in s if not unicodedata.combining(c)).lower()
     s = re.sub(r"\(\s*\d+\s*\)", " ", s)
@@ -197,9 +199,14 @@ def attraction_rows(park: str) -> list:
             "waitingtimes", {"park": park_id, "language": config["language"]}
         )
     }
+    # Futuroscope serves a nameless row: nothing to display, nothing to match.
+    nameless = [row["uuid"] for row in english if not row.get("name")]
+    if nameless:
+        print(f"  dropped {len(nameless)} unnamed row(s): {', '.join(nameless)}")
     return [
         (row["uuid"], row["code"], row["name"], localised.get(row["uuid"]))
         for row in english
+        if row.get("name")
     ]
 
 

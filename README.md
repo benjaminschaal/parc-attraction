@@ -1,4 +1,4 @@
-# Files d'attente — Parc Astérix, Europa-Park & Walibi Rhône-Alpes
+# Files d'attente — parcs français & Europa-Park
 
 Webapp de suivi des temps d'attente, construite sur deux API publiques :
 [wartezeiten.app](https://api.wartezeiten.app/) et
@@ -15,9 +15,14 @@ Webapp de suivi des temps d'attente, construite sur deux API publiques :
   classement des attractions les plus chargées, « journée type » heure par
   heure, et par attraction sa courbe du jour et ses moyennes.
 
-Parcs couverts : Parc Astérix (France), Europa-Park (Allemagne) et
-Walibi Rhône-Alpes (Les Avenières, Isère). Ajouter un parc = une entrée dans
-`src/lib/parks.ts`, la même dans `scripts/build-attractions-dataset.py` et
+Sept parcs : Parc Astérix, Disneyland Paris, Disney Adventure World,
+Futuroscope, Nigloland, Walibi Rhône-Alpes et Europa-Park. Le sélecteur en haut
+de l'écran est un menu déroulant natif, groupé par pays — il encaisse la liste
+quelle que soit sa longueur, là où la rangée de boutons qu'il remplace ne tenait
+qu'à trois sur un téléphone.
+
+Ajouter un parc = une entrée dans `src/lib/parks.ts`, la même dans
+`scripts/build-attractions-dataset.py` (avec son emprise Overpass) et
 `scripts/collect-history.mjs`, puis une passe du générateur de données.
 
 ## Développement
@@ -37,6 +42,10 @@ sienne dans `src/lib/parks.ts` :
 | Parc | Source | Ce qu'on obtient |
 | --- | --- | --- |
 | Parc Astérix | wartezeiten.app (`parcasterix`) | attentes, statut détaillé, horaires, affluence |
+| Disneyland Paris | wartezeiten.app (`disneylandparis`) | idem |
+| Disney Adventure World | wartezeiten.app (`disneyadventureworld`) | idem |
+| Futuroscope | wartezeiten.app (`futuroscope`) | idem, mais noms en anglais — voir plus bas |
+| Nigloland | wartezeiten.app (`nigloland`) | idem |
 | Europa-Park | wartezeiten.app (`europapark`) | idem |
 | Walibi Rhône-Alpes | Queue-Times (parc `301`) | attentes et ouvert/fermé, **rien d'autre** |
 
@@ -84,9 +93,18 @@ attractions sans GPS — à relire avant de committer.
 ### Les noms français
 
 wartezeiten.app ne parle que `de` et `en` (Queue-Times sert déjà les noms
-français pour un parc français). Pour le Parc Astérix, la réponse `de` conserve
-les noms français d'origine ; pour Europa-Park, les libellés français sont dans
-`attractions.json` (`nameFr`).
+français pour un parc français). Trois cas cohabitent :
+
+- **Noms déjà français dans la réponse** — Parc Astérix (en `de`), Nigloland et
+  les deux parcs Disney (en `en`) : l'API renvoie les noms d'origine.
+- **Table manuelle** — Europa-Park : les libellés français sont dans
+  `attractions.json` (`nameFr`), via `FRENCH_NAMES` dans le générateur.
+- **Noms repris d'OpenStreetMap** — Futuroscope, seul parc dont l'API répond en
+  anglais *quelle que soit* la langue demandée. Le générateur indexe les
+  attractions OSM sous tous leurs tags de nom (`name`, `name:en`, `name:fr`,
+  `alt_name`…), ce qui permet de retrouver « L'Extraordinaire Voyage » à partir
+  de « The Extraordinary Journey » — et de s'en servir comme `nameFr`. C'est le
+  drapeau `frenchFromOsm` dans `scripts/build-attractions-dataset.py`.
 
 ### L'historique
 

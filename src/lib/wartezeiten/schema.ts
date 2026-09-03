@@ -15,7 +15,10 @@ export const waitingTimeSchema = z.object({
   uuid: z.string(),
   waitingtime: z.coerce.number().catch(0),
   status: z.enum(RIDE_STATUSES).catch("closed"),
-  name: z.string(),
+  // Futuroscope serves a row with no name at all. `z.string()` would reject
+  // it and, with it, every other ride in the park — the server drops the row
+  // instead, in `fetchWartezeitenSnapshot`.
+  name: z.string().nullish().transform((v) => v ?? ""),
 });
 
 export const waitingTimesSchema = z.array(waitingTimeSchema);

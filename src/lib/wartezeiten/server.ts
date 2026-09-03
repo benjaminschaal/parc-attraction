@@ -53,7 +53,9 @@ export async function fetchWartezeitenSnapshot(
     call("crowdlevel", { park: parkId }).catch(() => null),
   ]);
 
-  const rows = waitingTimesSchema.parse(waiting);
+  // A ride with no name cannot be listed, searched or put on the map, and at
+  // least one park serves such a row; the rest of the park is still good.
+  const rows = waitingTimesSchema.parse(waiting).filter((row) => row.name);
   const geo = getGeoData(park.id);
 
   const attractions: Attraction[] = rows.map((row) => {
