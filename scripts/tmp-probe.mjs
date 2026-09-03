@@ -1,61 +1,61 @@
 #!/usr/bin/env node
 /**
- * Fichier jetable, supprimé avant l'ouverture de la pull request. Le proxy
- * réseau de la session de développement bloque api.wartezeiten.app et
- * Nominatim ; un runner GitHub y accède. Sert ici à choisir, pour chaque
- * nouveau parc, la langue qui rend les noms français, et à relever l'emprise
- * géographique que la requête Overpass utilisera.
+ * Fichier jetable. Relève l'emprise exacte de chaque parc depuis les polygones
+ * `tourism=theme_park` d'OpenStreetMap : Nominatim ne connaît pas « Disney
+ * Adventure World » sous son nouveau nom, et les deux parcs Disney sont
+ * mitoyens — leurs boîtes ne doivent pas se recouvrir, sinon les attractions
+ * de l'un iraient se placer dans l'autre.
  */
-const API = "https://api.wartezeiten.app/v1";
-
-const PARKS = [
-  ["disneylandparis", "Parc Disneyland, Marne-la-Vallée"],
-  ["disneyadventureworld", "Walt Disney Studios Park, Marne-la-Vallée"],
-  ["futuroscope", "Futuroscope, Chasseneuil-du-Poitou"],
-  ["nigloland", "Nigloland, Dolancourt"],
+const MIRRORS = [
+  "https://overpass-api.de/api/interpreter",
+  "https://overpass.kumi.systems/api/interpreter",
 ];
 
-async function api(endpoint, headers) {
-  const res = await fetch(`${API}/${endpoint}`, {
-    headers: { accept: "application/json", "user-agent": "parc-attraction/1.0", ...headers },
-  });
-  if (!res.ok) throw new Error(`${endpoint} -> HTTP ${res.status}`);
-  return res.json();
-}
+// Zones de recherche généreuses autour de chaque parc.
+const AREAS = {
+  "disney (Marne-la-Vallée)": "48.855,2.760,48.885,2.800",
+  futuroscope: "46.660,0.360,46.680,0.390",
+  nigloland: "48.253,4.600,48.272,4.625",
+};
 
-for (const [id] of PARKS) {
-  for (const language of ["de", "en"]) {
+async function overpass(query) {
+  for (const mirror of MIRRORS) {
     try {
-      const rows = await api("waitingtimes", { park: id, language });
-      console.log(`NAMES ${id} ${language} ${rows.length} ${JSON.stringify(rows.slice(0, 12).map((r) => r.name))}`);
+      const res = await fetch(mirror, {
+        method: "POST",
+        body: new URLSearchParams({ data: query }),
+        headers: { "user-agent": "parc-attraction/1.0" },
+      });
+      const body = await res.text();
+      if (body.trimStart().startsWith("{")) return JSON.parse(body).elements ?? [];
+      console.log(`  ${mirror}: ${body.slice(0, 100)}`);
     } catch (error) {
-      console.log(`NAMES_ERROR ${id} ${language} ${error.message}`);
+      console.log(`  ${mirror}: ${error.message}`);
     }
   }
-  try {
-    const hours = await api("openingtimes", { park: id });
-    console.log(`HOURS ${id} ${JSON.stringify(hours).slice(0, 200)}`);
-  } catch (error) {
-    console.log(`HOURS_ERROR ${id} ${error.message}`);
-  }
+  return null;
 }
 
-for (const [id, query] of PARKS) {
-  try {
-    const res = await fetch(
-      "https://nominatim.openstreetmap.org/search?" +
-        new URLSearchParams({ q: query, format: "json", limit: "3" }),
-      { headers: { "user-agent": "parc-attraction/1.0 (probe)" } },
-    );
-    const hits = await res.json();
-    console.log(
-      `GEO ${id} ${JSON.stringify(
-        hits.map((h) => ({ n: h.display_name.slice(0, 70), lat: h.lat, lon: h.lon, bbox: h.boundingbox })),
-      )}`,
-    );
-  } catch (error) {
-    console.log(`GEO_ERROR ${id} ${error.message}`);
+for (const [label, box] of Object.entries(AREAS)) {
+  // `out bb` donne la boîte englobante de chaque polygone, ce qu'il nous faut.
+  const query = `[out:json][timeout:120];
+(
+  way["tourism"="theme_park"](${box});
+  relation["tourism"="theme_park"](${box});
+);
+out bb tags;`;
+  const elements = await overpass(query);
+  if (!elements) {
+    console.log(`BBOX_ERROR ${label}`);
+    continue;
   }
-  // Nominatim demande au plus une requête par seconde.
-  await new Promise((r) => setTimeout(r, 1200));
+  console.log(
+    `BBOX ${label} ${JSON.stringify(
+      elements.map((e) => ({
+        name: e.tags?.name,
+        type: e.type,
+        bounds: e.bounds,
+      })),
+    )}`,
+  );
 }
