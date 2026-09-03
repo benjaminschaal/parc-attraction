@@ -2,7 +2,7 @@
 /**
  * Appends one wait-time snapshot per park to the shared history store.
  *
- * Run by `.github/workflows/collect-history.yml` every 30 minutes: it checks
+ * Run by `.github/workflows/collect-history.yml` every 5 minutes: it checks
  * out the `history` branch into $HISTORY_DIR, runs this script, and commits
  * whatever changed. Neither wait-time API exposes anything but the *current*
  * wait times, so this is the only way to accumulate a history that also covers
@@ -12,7 +12,7 @@
  * providers, same attraction ids, so a point written here merges with one the
  * app recorded on a device.
  */
-import { mkdir, readFile, writeFile } from "node:fs/promises";
+import { mkdir, readdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 
 const WARTEZEITEN = "https://api.wartezeiten.app/v1";
@@ -144,6 +144,27 @@ async function readSource(source) {
   };
 }
 
+/**
+ * Rewrites `<park>/index.json`, the list of days that park has a file for.
+ *
+ * Listing a directory is not something the raw endpoint can do, and the API
+ * that can is capped at 60 requests/hour per IP without a token — an IP the
+ * app shares with every other tenant of its host. An index file sitting next
+ * to the data is read through the same CDN as the data itself: no token, no
+ * rate limit, no shared-IP surprise.
+ */
+async function writeIndex(dir) {
+  const dates = (await readdir(dir))
+    .filter((name) => name.endsWith(".json") && name !== "index.json")
+    .map((name) => name.replace(/\.json$/, ""))
+    .sort()
+    .reverse();
+  await writeFile(
+    path.join(dir, "index.json"),
+    `${JSON.stringify({ dates })}\n`,
+  );
+}
+
 async function collect(park) {
   const reading = await readSource(park.source);
   if (!reading) {
@@ -173,6 +194,7 @@ async function collect(park) {
 
   day.points.push({ t: stamp, c: crowd, w, x });
   await writeFile(file, `${JSON.stringify(day)}\n`);
+  await writeIndex(dir);
   console.log(
     `${park.id}: recorded ${stamp} (${Object.keys(w).length} open, ${x.length} closed) -> ${file}`,
   );
