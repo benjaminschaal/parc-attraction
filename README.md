@@ -92,6 +92,9 @@ Le jeton se crée sur
 l'app se rabat proprement sur l'historique local — la collecte, elle, tourne
 déjà et l'historique accumulé sera lisible rétroactivement dès l'ajout du jeton.
 
+Ce que ce stockage sait faire, ce qui casserait en premier et quand il vaudrait
+la peine de passer à une vraie base de données : `docs/historique-et-stockage.md`.
+
 ## Déploiement
 
 Hébergé sur Vercel, déployé à chaque push sur `main`.
