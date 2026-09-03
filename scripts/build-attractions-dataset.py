@@ -198,15 +198,16 @@ def attraction_rows(park: str) -> list:
         for row in api_get(
             "waitingtimes", {"park": park_id, "language": config["language"]}
         )
+        if row.get("uuid")
     }
-    # Futuroscope serves a nameless row: nothing to display, nothing to match.
-    nameless = [row["uuid"] for row in english if not row.get("name")]
-    if nameless:
-        print(f"  dropped {len(nameless)} unnamed row(s): {', '.join(nameless)}")
+    # Futuroscope serves a row with neither name nor uuid: nothing to display,
+    # nothing to key on, nothing to match against OpenStreetMap.
+    usable = [row for row in english if row.get("name") and row.get("uuid")]
+    if len(usable) != len(english):
+        print(f"  dropped {len(english) - len(usable)} unusable row(s)")
     return [
-        (row["uuid"], row["code"], row["name"], localised.get(row["uuid"]))
-        for row in english
-        if row.get("name")
+        (row["uuid"], row.get("code") or "", row["name"], localised.get(row["uuid"]))
+        for row in usable
     ]
 
 

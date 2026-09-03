@@ -8,11 +8,11 @@ const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"]
 
 export const metadata: Metadata = {
   title: {
-    default: "Files d'attente — Parc Astérix & Europa-Park",
+    default: "Files d'attente — parcs d'attractions",
     template: "%s — Files d'attente",
   },
   description:
-    "Temps d'attente en direct, carte des attractions et historique pour le Parc Astérix et Europa-Park.",
+    "Temps d'attente en direct, carte des attractions et historique pour sept parcs : Parc Astérix, Disneyland Paris, Disney Adventure World, Futuroscope, Nigloland, Walibi Rhône-Alpes et Europa-Park.",
   applicationName: "Files d'attente",
   manifest: "/manifest.webmanifest",
   icons: {
