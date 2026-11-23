@@ -8,6 +8,7 @@ import {
   relativeFromNow,
 } from "@/lib/format";
 import CrowdGauge from "@/components/ui/CrowdGauge";
+import ParkHero from "@/components/ParkHero";
 import ParkPicker from "@/components/ParkPicker";
 import type { ParkSnapshot } from "@/lib/snapshot";
 
@@ -33,6 +34,7 @@ export default function ParkHeader({
 
   return (
     <header className="park-wash border-b border-border">
+      <ParkHero key={park.id} park={park} />
       <div className="mx-auto flex w-full max-w-3xl flex-col gap-4 px-4 pt-3 pb-4">
         <div className="flex items-start gap-2">
           <div className="min-w-0 flex-1">
