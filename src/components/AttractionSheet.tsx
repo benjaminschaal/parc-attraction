@@ -1,10 +1,10 @@
 "use client";
 
 import { useEffect } from "react";
+import { MapPin, X } from "lucide-react";
 import {
   formatMinutes,
   formatTime,
-  kindIcon,
   kindLabel,
   parkDay,
   parkMinutes,
@@ -17,6 +17,7 @@ import { attractionSeries, hourlyProfile } from "@/lib/history/series";
 import type { Attraction } from "@/lib/snapshot";
 import HourlyBars from "@/components/charts/HourlyBars";
 import TimeChart from "@/components/charts/TimeChart";
+import KindIcon from "@/components/ui/KindIcon";
 import StatusPill from "@/components/ui/StatusPill";
 
 interface AttractionSheetProps {
@@ -64,7 +65,7 @@ export default function AttractionSheet({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-end justify-center bg-black/45 sm:items-center"
+      className="scrim-in fixed inset-0 z-50 flex items-end justify-center bg-black/45 sm:items-center"
       onClick={onClose}
       role="presentation"
     >
@@ -73,15 +74,19 @@ export default function AttractionSheet({
         aria-modal="true"
         aria-label={attraction.label}
         onClick={(e) => e.stopPropagation()}
-        className="pad-safe-bottom max-h-[88vh] w-full max-w-lg overflow-y-auto rounded-t-2xl border border-border bg-surface p-4 sm:rounded-2xl"
+        className="sheet-in pad-safe-bottom max-h-[88vh] w-full max-w-lg overflow-y-auto rounded-t-3xl border border-border bg-surface px-4 pt-2 pb-4 shadow-[0_-8px_32px_rgb(0_0_0/0.18)] sm:rounded-3xl sm:pt-4"
       >
+        <div
+          aria-hidden
+          className="mx-auto mb-3 h-1 w-10 rounded-full bg-foreground/15 sm:hidden"
+        />
         <div className="flex items-start justify-between gap-3">
           <div className="min-w-0">
-            <h2 className="flex items-center gap-2 text-base font-semibold">
-              <span aria-hidden>{kindIcon(attraction.kind)}</span>
-              <span className="truncate">{attraction.label}</span>
+            <h2 className="text-lg leading-snug font-semibold tracking-tight">
+              {attraction.label}
             </h2>
-            <p className="mt-0.5 text-xs text-muted">
+            <p className="mt-0.5 flex items-center gap-1.5 text-xs text-muted">
+              <KindIcon kind={attraction.kind} className="size-3.5 shrink-0" />
               {kindLabel(attraction.kind) ?? "Attraction"}
               {attraction.label !== attraction.name && ` · ${attraction.name}`}
             </p>
@@ -90,15 +95,15 @@ export default function AttractionSheet({
             type="button"
             onClick={onClose}
             aria-label="Fermer"
-            className="shrink-0 rounded-lg border border-border px-2 py-1 text-sm text-muted hover:bg-surface-2"
+            className="grid size-8 shrink-0 place-items-center rounded-full bg-surface-2 text-muted transition-colors hover:text-foreground"
           >
-            ✕
+            <X aria-hidden className="size-4" strokeWidth={2.25} />
           </button>
         </div>
 
         <div className="mt-4 flex items-center gap-3">
           <div
-            className="flex h-16 w-20 flex-col items-center justify-center rounded-xl font-semibold text-white"
+            className="flex h-16 w-20 flex-col items-center justify-center rounded-2xl font-semibold text-white"
             style={
               attraction.status === "opened"
                 ? { backgroundColor: waitColor(attraction.waitingTime), color: "#fff" }
@@ -169,8 +174,9 @@ export default function AttractionSheet({
           <button
             type="button"
             onClick={() => onShowOnMap(attraction)}
-            className="mt-5 w-full rounded-lg border border-border py-2.5 text-sm font-medium hover:bg-surface-2"
+            className="mt-5 flex w-full items-center justify-center gap-2 rounded-xl bg-accent py-3 text-sm font-semibold text-accent-ink transition-opacity hover:opacity-90"
           >
+            <MapPin aria-hidden className="size-4" strokeWidth={2.25} />
             Voir sur la carte
           </button>
         )}

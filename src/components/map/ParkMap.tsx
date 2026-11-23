@@ -3,7 +3,8 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { LngLatBounds, Map as MapLibreMap, Marker, setWorkerUrl } from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
-import { kindIcon, waitColor } from "@/lib/format";
+import { waitColor } from "@/lib/format";
+import KindIcon from "@/components/ui/KindIcon";
 import type { Park } from "@/lib/parks";
 import type { Attraction } from "@/lib/snapshot";
 import StatusPill from "@/components/ui/StatusPill";
@@ -251,9 +252,12 @@ export default function ParkMap({
           <div className="absolute inset-x-3 bottom-3 rounded-xl border border-border bg-surface/97 p-3 shadow-lg backdrop-blur">
             <div className="flex items-center gap-3">
               <div className="min-w-0 flex-1">
-                <p className="flex items-center gap-1.5 truncate text-sm font-medium">
-                  <span aria-hidden>{kindIcon(selectedAttraction.kind)}</span>
-                  {selectedAttraction.label}
+                <p className="flex items-center gap-1.5 text-sm font-medium">
+                  <KindIcon
+                    kind={selectedAttraction.kind}
+                    className="size-4 shrink-0 text-muted"
+                  />
+                  <span className="truncate">{selectedAttraction.label}</span>
                 </p>
                 <div className="mt-1">
                   <StatusPill status={selectedAttraction.status} />

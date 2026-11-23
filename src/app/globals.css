@@ -1,23 +1,34 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f5f6f8;
+  /*
+   * Neutrals carry a faint violet cast, borrowed from the night sky of the
+   * app icon, so the chrome reads as one family with it instead of as stock
+   * grey. The accent is kept off the green-to-red wait ramp on purpose: it
+   * marks selection and focus, never a number of minutes.
+   */
+  --background: #f7f6fa;
   --surface: #ffffff;
-  --surface-2: #eef0f4;
-  --foreground: #14161a;
-  --muted: #626a76;
-  --border: #dfe3ea;
-  --accent: #0ea5e9;
+  --surface-2: #efedf4;
+  --foreground: #17141f;
+  --muted: #615b6e;
+  --border: #e3e0ea;
+  --accent: #6d4aff;
+  --accent-ink: #ffffff;
+  /* Each park page overrides this with the park's own colour. */
+  --park: var(--accent);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0b0d10;
-    --surface: #14171c;
-    --surface-2: #1b1f26;
-    --foreground: #eef1f5;
-    --muted: #99a1ae;
-    --border: #262b33;
+    --background: #0f0d16;
+    --surface: #18151f;
+    --surface-2: #221e2c;
+    --foreground: #f1eff6;
+    --muted: #a49eb3;
+    --border: #2e2939;
+    --accent: #9b85ff;
+    --accent-ink: #0f0d16;
   }
 }
 
@@ -29,6 +40,8 @@
   --color-muted: var(--muted);
   --color-border: var(--border);
   --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --color-park: var(--park);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
@@ -40,7 +53,33 @@ html {
 body {
   background: var(--background);
   color: var(--foreground);
+  caret-color: var(--accent);
+  accent-color: var(--accent);
   -webkit-tap-highlight-color: transparent;
+}
+
+::selection {
+  background: color-mix(in oklab, var(--accent) 28%, transparent);
+}
+
+/* One focus ring for every control, drawn only for keyboard users. */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 0.5rem;
+}
+
+/*
+ * The park's own colour, washed into the header so each park page has a
+ * tint of its own without touching the wait-time colours.
+ */
+.park-wash {
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in oklab, var(--park) 14%, var(--surface)) 0%,
+      var(--surface) 100%
+    );
 }
 
 /*
@@ -93,8 +132,46 @@ body {
   animation: pulse-dot 2s ease-in-out infinite;
 }
 
+@keyframes spin-once {
+  to { transform: rotate(360deg); }
+}
+
+.spin {
+  animation: spin-once 0.9s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+
+/* The attraction sheet rises from the bottom edge, as iOS sheets do. */
+@keyframes sheet-in {
+  from { transform: translateY(24px); opacity: 0; }
+  to { transform: none; opacity: 1; }
+}
+
+@keyframes scrim-in {
+  from { opacity: 0; }
+}
+
+.sheet-in {
+  animation: sheet-in 260ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.scrim-in {
+  animation: scrim-in 200ms ease-out;
+}
+
+/* A row of chips that scrolls sideways instead of wrapping onto two lines. */
+.scroll-row {
+  scrollbar-width: none;
+}
+
+.scroll-row::-webkit-scrollbar {
+  display: none;
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .live-dot {
+  .live-dot,
+  .spin,
+  .sheet-in,
+  .scrim-in {
     animation: none;
   }
 }

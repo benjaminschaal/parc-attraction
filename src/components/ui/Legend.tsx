@@ -11,7 +11,7 @@ const STEPS: [string, number][] = [
 
 export default function Legend() {
   return (
-    <div className="rounded-xl border border-border bg-surface p-3">
+    <div className="rounded-2xl border border-border bg-surface p-4">
       <h2 className="mb-2 text-xs font-medium text-muted">Légende</h2>
       <ul className="flex flex-wrap gap-x-3 gap-y-1.5">
         {STEPS.map(([label, value]) => (

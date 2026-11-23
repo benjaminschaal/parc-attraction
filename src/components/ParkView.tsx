@@ -61,7 +61,10 @@ export default function ParkView({
   const attractions = data?.attractions ?? [];
 
   return (
-    <div className="flex min-h-dvh flex-col pad-safe-top pad-safe-x">
+    <div
+      className="flex min-h-dvh flex-col pad-safe-top pad-safe-x"
+      style={{ "--park": park.accent } as React.CSSProperties}
+    >
       <div className="safe-top-scrim" aria-hidden />
 
       <ParkHeader
@@ -72,27 +75,29 @@ export default function ParkView({
       />
 
       <div className="sticky stick-below-safe-top z-30 border-b border-border bg-background/92 backdrop-blur">
-        <div
-          role="tablist"
-          aria-label="Vues"
-          className="mx-auto flex w-full max-w-3xl gap-1 px-4 py-2"
-        >
-          {TABS.map((t) => (
-            <button
-              key={t.id}
-              role="tab"
-              type="button"
-              aria-selected={tab === t.id}
-              onClick={() => setTab(t.id)}
-              className={`flex-1 rounded-lg px-3 py-1.5 text-sm font-medium transition-colors ${
-                tab === t.id
-                  ? "bg-surface text-foreground shadow-sm"
-                  : "text-muted hover:bg-surface-2"
-              }`}
-            >
-              {t.label}
-            </button>
-          ))}
+        <div className="mx-auto w-full max-w-3xl px-4 py-2">
+          <div
+            role="tablist"
+            aria-label="Vues"
+            className="flex gap-1 rounded-xl bg-surface-2 p-1"
+          >
+            {TABS.map((t) => (
+              <button
+                key={t.id}
+                role="tab"
+                type="button"
+                aria-selected={tab === t.id}
+                onClick={() => setTab(t.id)}
+                className={`flex-1 rounded-lg px-3 py-1.5 text-sm font-medium transition-[color,background-color,box-shadow] duration-200 ${
+                  tab === t.id
+                    ? "bg-surface text-foreground shadow-[0_1px_3px_rgb(0_0_0/0.12)]"
+                    : "text-muted hover:text-foreground"
+                }`}
+              >
+                {t.label}
+              </button>
+            ))}
+          </div>
         </div>
       </div>
 
