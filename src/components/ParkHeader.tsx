@@ -1,5 +1,6 @@
 "use client";
 
+import { RotateCw } from "lucide-react";
 import { getSource, type Park } from "@/lib/parks";
 import {
   formatDateLong,
@@ -31,14 +32,13 @@ export default function ParkHeader({
   const peak = waits.length ? Math.max(...waits) : null;
 
   return (
-    <header className="border-b border-border bg-surface">
-      <div className="mx-auto flex w-full max-w-3xl flex-col gap-3 px-4 pt-3 pb-4">
-        <ParkPicker park={park} />
-
-        <div className="flex items-start justify-between gap-3">
-          <div className="min-w-0">
-            <h1 className="truncate text-lg font-semibold">{park.name}</h1>
-            <p className="text-xs text-muted first-letter:uppercase">
+    <header className="park-wash border-b border-border">
+      <div className="mx-auto flex w-full max-w-3xl flex-col gap-4 px-4 pt-3 pb-4">
+        <div className="flex items-start gap-2">
+          <div className="min-w-0 flex-1">
+            {/* The picker is the page title: the park's name appears once. */}
+            <ParkPicker key={park.id} park={park} />
+            <p className="mt-0.5 pl-0.5 text-xs text-muted first-letter:uppercase">
               {formatDateLong(new Date(), park.timeZone)}
               {snapshot?.opening?.openedToday
                 ? ` · ouvert de ${formatTime(snapshot.opening.openFrom, park.timeZone)} à ${formatTime(snapshot.opening.closedFrom, park.timeZone)}`
@@ -51,43 +51,70 @@ export default function ParkHeader({
             type="button"
             onClick={onRefresh}
             disabled={isFetching}
-            className="shrink-0 rounded-lg border border-border px-2.5 py-1.5 text-xs text-muted transition-colors hover:bg-surface-2 disabled:opacity-50"
+            aria-label="Actualiser les temps d'attente"
+            title="Actualiser"
+            className="mt-1 grid size-9 shrink-0 place-items-center rounded-full border border-border bg-surface/70 text-muted transition-colors hover:text-foreground disabled:cursor-progress"
           >
-            {isFetching ? "…" : "Actualiser"}
+            <RotateCw
+              aria-hidden
+              className={`size-4 ${isFetching ? "spin" : ""}`}
+              strokeWidth={2}
+            />
           </button>
         </div>
 
-        <div className="grid grid-cols-3 gap-2">
-          <Stat label="Ouvertes" value={open.length ? `${open.length}` : "0"} />
+        {/* Three figures read as one sentence, not three boxes. */}
+        <dl className="grid grid-cols-3 divide-x divide-border">
+          <Stat label="ouvertes" value={`${open.length}`} />
           <Stat
-            label="Attente moy."
-            value={average == null ? "—" : `${average} min`}
+            label="d'attente moyenne"
+            value={average == null ? "—" : `${average}`}
+            unit={average == null ? undefined : "min"}
           />
-          <Stat label="Max" value={peak == null ? "—" : `${peak} min`} />
-        </div>
+          <Stat
+            label="au plus long"
+            value={peak == null ? "—" : `${peak}`}
+            unit={peak == null ? undefined : "min"}
+          />
+        </dl>
 
         {snapshot?.crowdLevel && <CrowdGauge level={snapshot.crowdLevel.level} />}
 
         <p className="flex items-center gap-1.5 text-[11px] text-muted">
           <span
-            className={`inline-block size-1.5 rounded-full ${isFetching ? "live-dot bg-amber-500" : "bg-emerald-500"}`}
+            className={`inline-block size-1.5 shrink-0 rounded-full ${isFetching ? "live-dot bg-amber-500" : "bg-emerald-500"}`}
             aria-hidden
           />
-          {getSource(park).credit}
-          {snapshot?.updatedAt
-            ? ` · relevé de ${formatTime(snapshot.updatedAt, park.timeZone)} (${relativeFromNow(snapshot.updatedAt)})`
-            : ""}
+          <span>
+            {getSource(park).credit}
+            {snapshot?.updatedAt
+              ? ` · relevé de ${formatTime(snapshot.updatedAt, park.timeZone)} (${relativeFromNow(snapshot.updatedAt)})`
+              : ""}
+          </span>
         </p>
       </div>
     </header>
   );
 }
 
-function Stat({ label, value }: { label: string; value: string }) {
+function Stat({
+  label,
+  value,
+  unit,
+}: {
+  label: string;
+  value: string;
+  unit?: string;
+}) {
   return (
-    <div className="rounded-lg bg-surface-2 px-3 py-2">
-      <div className="text-[11px] text-muted">{label}</div>
-      <div className="text-base font-semibold tabular-nums">{value}</div>
+    <div className="flex flex-col-reverse px-3 first:pl-0.5 last:pr-0">
+      <dt className="text-[11px] leading-tight text-muted">{label}</dt>
+      <dd className="text-2xl font-semibold tracking-tight tabular-nums">
+        {value}
+        {unit && (
+          <span className="ml-0.5 text-sm font-medium text-muted">{unit}</span>
+        )}
+      </dd>
     </div>
   );
 }

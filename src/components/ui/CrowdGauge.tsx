@@ -7,26 +7,38 @@ const LEVELS: [number, string, string][] = [
 ];
 
 /**
- * The API's `crowd_level`, a 0–100 index of how busy the park is right now.
+ * The API's `crowd_level`, a 0–100 index of how busy the park is right now,
+ * shown as five steps that light up in turn — the same five words the label
+ * uses, so the bar and the word never disagree.
  */
 export default function CrowdGauge({ level }: { level: number }) {
   const clamped = Math.max(0, Math.min(100, level));
-  const [, label, color] = LEVELS.find(([max]) => clamped < max)!;
+  const step = LEVELS.findIndex(([max]) => clamped < max);
+  const [, label, color] = LEVELS[step];
 
   return (
-    <div className="flex flex-col gap-1">
-      <div className="flex items-baseline justify-between gap-2">
-        <span className="text-xs text-muted">Affluence</span>
-        <span className="text-xs font-medium" style={{ color }}>
-          {label}
-        </span>
+    <div
+      className="flex items-center gap-3"
+      role="meter"
+      aria-label="Affluence"
+      aria-valuemin={0}
+      aria-valuemax={100}
+      aria-valuenow={Math.round(clamped)}
+      aria-valuetext={label}
+    >
+      <span className="text-xs text-muted">Affluence</span>
+      <div className="flex flex-1 gap-1" aria-hidden>
+        {LEVELS.map(([max], i) => (
+          <span
+            key={max}
+            className="h-2 flex-1 rounded-full bg-foreground/10 transition-colors duration-500"
+            style={i <= step ? { backgroundColor: color } : undefined}
+          />
+        ))}
       </div>
-      <div className="h-1.5 overflow-hidden rounded-full bg-surface-2">
-        <div
-          className="h-full rounded-full transition-[width] duration-500"
-          style={{ width: `${Math.max(clamped, 2)}%`, backgroundColor: color }}
-        />
-      </div>
+      <span className="min-w-[4.5rem] text-right text-xs font-semibold" style={{ color }}>
+        {label}
+      </span>
     </div>
   );
 }

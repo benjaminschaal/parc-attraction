@@ -1,11 +1,13 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { kindIcon, waitColor } from "@/lib/format";
+import { Search, Star } from "lucide-react";
+import { kindLabel, waitColor } from "@/lib/format";
 import { attractionSeries, trend } from "@/lib/history/series";
 import type { DayHistory } from "@/lib/history/localHistory";
 import type { Attraction } from "@/lib/snapshot";
 import Sparkline from "@/components/charts/Sparkline";
+import KindIcon from "@/components/ui/KindIcon";
 import StatusPill from "@/components/ui/StatusPill";
 import TrendArrow from "@/components/ui/TrendArrow";
 import WaitBadge from "@/components/ui/WaitBadge";
@@ -82,15 +84,22 @@ export default function AttractionList({
   return (
     <div className="flex flex-col gap-3">
       <div className="flex flex-col gap-2">
-        <input
-          type="search"
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          placeholder="Rechercher une attraction"
-          aria-label="Rechercher une attraction"
-          className="w-full rounded-lg border border-border bg-surface px-3 py-2 text-sm outline-none placeholder:text-muted focus:border-foreground/30"
-        />
-        <div className="flex flex-wrap items-center gap-1.5">
+        <div className="relative">
+          <Search
+            aria-hidden
+            className="pointer-events-none absolute top-1/2 left-3 size-4 -translate-y-1/2 text-muted"
+            strokeWidth={2}
+          />
+          <input
+            type="search"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder="Rechercher une attraction"
+            aria-label="Rechercher une attraction"
+            className="w-full rounded-xl border border-border bg-surface py-2.5 pr-3 pl-9 text-sm placeholder:text-muted focus:border-accent focus-visible:outline-none"
+          />
+        </div>
+        <div className="scroll-row -mx-4 flex items-center gap-1.5 overflow-x-auto px-4">
           <Chip active={sort === "attente"} onClick={() => setSort("attente")}>
             Plus longues
           </Chip>
@@ -115,10 +124,10 @@ export default function AttractionList({
           Aucune attraction ne correspond.
         </p>
       ) : (
-        <ul className="overflow-hidden rounded-xl border border-border bg-surface">
+        <ul className="overflow-hidden rounded-2xl border border-border bg-surface">
           {rows.map((a, i) => (
             <li key={a.uuid}>
-              {i > 0 && <div className="ml-4 h-px bg-border" aria-hidden />}
+              {i > 0 && <div className="ml-12 h-px bg-border" aria-hidden />}
               <Row
                 attraction={a}
                 history={history}
@@ -153,8 +162,11 @@ function Row({
   const series = history ? attractionSeries(history, a.uuid, timeZone) : [];
   const delta = trend(history ?? null, a.uuid);
 
+  const isOpen = a.status === "opened";
+  const kind = kindLabel(a.kind);
+
   return (
-    <div className="flex items-center gap-2 px-3 py-2.5">
+    <div className="flex items-center gap-1 py-2 pr-3 pl-1.5">
       <button
         type="button"
         onClick={() => onToggleFavorite(a.uuid)}
@@ -164,34 +176,48 @@ function Row({
             ? `Retirer ${a.label} des favoris`
             : `Ajouter ${a.label} aux favoris`
         }
-        className={`shrink-0 rounded-md p-1 text-base leading-none transition-colors ${
-          isFavorite ? "text-amber-500" : "text-muted/40 hover:text-muted"
+        className={`grid size-9 shrink-0 place-items-center rounded-full transition-colors ${
+          isFavorite
+            ? "text-amber-500"
+            : "text-foreground/25 hover:text-muted"
         }`}
       >
-        {isFavorite ? "★" : "☆"}
+        <Star
+          aria-hidden
+          className="size-[18px]"
+          strokeWidth={2}
+          fill={isFavorite ? "currentColor" : "none"}
+        />
       </button>
 
       <button
         type="button"
         onClick={() => onSelect(a)}
-        className="flex min-w-0 flex-1 items-center gap-3 text-left"
+        className="flex min-w-0 flex-1 items-center gap-3 rounded-lg text-left"
       >
         <div className="min-w-0 flex-1">
-          <div className="flex items-center gap-1.5">
-            <span aria-hidden className="text-sm">
-              {kindIcon(a.kind)}
-            </span>
-            <span className="truncate text-sm font-medium">{a.label}</span>
+          <div
+            className={`truncate text-[15px] leading-snug font-medium ${
+              isOpen ? "" : "text-muted"
+            }`}
+          >
+            {a.label}
           </div>
-          <div className="mt-1 flex items-center gap-2">
-            <StatusPill status={a.status} />
-            {a.status === "opened" && <TrendArrow delta={delta} />}
+          <div className="mt-0.5 flex min-w-0 items-center gap-1.5 text-xs text-muted">
+            <KindIcon kind={a.kind} className="size-3.5 shrink-0" />
+            {/* Open is the normal case: only say so when it is not. */}
+            {isOpen ? (
+              <span className="truncate">{kind ?? "Attraction"}</span>
+            ) : (
+              <StatusPill status={a.status} />
+            )}
+            {isOpen && <TrendArrow delta={delta} />}
           </div>
         </div>
 
         <Sparkline
           points={series}
-          color={a.status === "opened" ? waitColor(a.waitingTime) : "#94a3b8"}
+          color={isOpen ? waitColor(a.waitingTime) : "#94a3b8"}
         />
         <WaitBadge minutes={a.waitingTime} status={a.status} />
       </button>
@@ -213,10 +239,10 @@ function Chip({
       type="button"
       onClick={onClick}
       aria-pressed={active}
-      className={`rounded-full border px-2.5 py-1 text-xs transition-colors ${
+      className={`shrink-0 rounded-full border px-3 py-1.5 text-xs font-medium whitespace-nowrap transition-colors ${
         active
-          ? "border-transparent bg-foreground text-background"
-          : "border-border text-muted hover:bg-surface-2"
+          ? "border-transparent bg-accent text-accent-ink"
+          : "border-border bg-surface text-muted hover:text-foreground"
       }`}
     >
       {children}

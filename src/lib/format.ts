@@ -18,34 +18,30 @@ export const STATUS_SHORT: Record<RideStatus, string> = {
   closed: "Fermée",
 };
 
-/** OpenStreetMap `attraction=*` values, mapped to a French label + icon. */
-const KINDS: Record<string, [string, string]> = {
-  roller_coaster: ["Montagnes russes", "🎢"],
-  log_flume: ["Bûches / eau", "🚿"],
-  water_slide: ["Toboggan aquatique", "💦"],
-  river_rafting: ["Rafting", "🛶"],
-  boat_ride: ["Parcours en bateau", "⛵"],
-  dark_ride: ["Parcours scénique", "🔦"],
-  carousel: ["Manège", "🎠"],
-  swing_carousel: ["Chaises volantes", "🎡"],
-  swing_ride: ["Chaises volantes", "🎡"],
-  pirate_ship: ["Bateau pirate", "🏴‍☠️"],
-  bumper_car: ["Autos tamponneuses", "🚗"],
-  drop_tower: ["Tour de chute", "🗼"],
-  train: ["Petit train", "🚂"],
-  amusement_ride: ["Attraction", "🎪"],
-  flying_theater: ["Cinéma dynamique", "🕊️"],
-  playground: ["Aire de jeux", "🧒"],
-  animal: ["Spectacle animalier", "🐬"],
-  yes: ["Attraction", "🎪"],
+/** OpenStreetMap `attraction=*` values, mapped to a French label. */
+const KINDS: Record<string, string> = {
+  roller_coaster: "Montagnes russes",
+  log_flume: "Bûches / eau",
+  water_slide: "Toboggan aquatique",
+  river_rafting: "Rafting",
+  boat_ride: "Parcours en bateau",
+  dark_ride: "Parcours scénique",
+  carousel: "Manège",
+  swing_carousel: "Chaises volantes",
+  swing_ride: "Chaises volantes",
+  pirate_ship: "Bateau pirate",
+  bumper_car: "Autos tamponneuses",
+  drop_tower: "Tour de chute",
+  train: "Petit train",
+  amusement_ride: "Attraction",
+  flying_theater: "Cinéma dynamique",
+  playground: "Aire de jeux",
+  animal: "Spectacle animalier",
+  yes: "Attraction",
 };
 
 export function kindLabel(kind?: string): string | null {
-  return kind ? (KINDS[kind]?.[0] ?? null) : null;
-}
-
-export function kindIcon(kind?: string): string {
-  return (kind && KINDS[kind]?.[1]) || "🎪";
+  return kind ? (KINDS[kind] ?? null) : null;
 }
 
 /**

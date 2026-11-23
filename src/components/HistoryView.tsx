@@ -57,7 +57,7 @@ export default function HistoryView({
 
   return (
     <div className="flex flex-col gap-5">
-      <section className="rounded-xl border border-border bg-surface p-3">
+      <section className="rounded-2xl border border-border bg-surface p-4">
         <h2 className="text-sm font-medium">Historique</h2>
         <p className="mt-1 text-xs text-muted">
           L&apos;API ne publie que les temps d&apos;attente instantanés.
@@ -72,10 +72,10 @@ export default function HistoryView({
                 type="button"
                 onClick={() => setSelectedDate(d)}
                 aria-pressed={d === date}
-                className={`rounded-full border px-2.5 py-1 text-xs transition-colors ${
+                className={`rounded-full border px-3 py-1.5 text-xs font-medium transition-colors ${
                   d === date
-                    ? "border-transparent bg-foreground text-background"
-                    : "border-border text-muted hover:bg-surface-2"
+                    ? "border-transparent bg-accent text-accent-ink"
+                    : "border-border bg-surface text-muted hover:text-foreground"
                 }`}
               >
                 {d === today ? "Aujourd'hui" : formatDayChip(d)}
@@ -91,7 +91,7 @@ export default function HistoryView({
         </p>
       ) : (
         <>
-          <section className="rounded-xl border border-border bg-surface p-3">
+          <section className="rounded-2xl border border-border bg-surface p-4">
             <h3 className="mb-2 text-sm font-medium">
               Attente moyenne du parc
             </h3>
@@ -128,7 +128,7 @@ export default function HistoryView({
           </section>
 
           {crowdSeries(day!, park.timeZone).length > 1 && (
-            <section className="rounded-xl border border-border bg-surface p-3">
+            <section className="rounded-2xl border border-border bg-surface p-4">
               <h3 className="mb-2 text-sm font-medium">
                 Indice d&apos;affluence
               </h3>
@@ -147,7 +147,7 @@ export default function HistoryView({
             </section>
           )}
 
-          <section className="rounded-xl border border-border bg-surface p-3">
+          <section className="rounded-2xl border border-border bg-surface p-4">
             <h3 className="mb-2 text-sm font-medium">
               Attractions les plus chargées
             </h3>
@@ -183,7 +183,7 @@ export default function HistoryView({
         </>
       )}
 
-      <section className="rounded-xl border border-border bg-surface p-3">
+      <section className="rounded-2xl border border-border bg-surface p-4">
         <h3 className="mb-1 text-sm font-medium">Journée type</h3>
         <p className="mb-2 text-xs text-muted">
           Attente moyenne par heure, tous relevés confondus sur{" "}
