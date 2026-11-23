@@ -132,6 +132,41 @@ body {
   animation: pulse-dot 2s ease-in-out infinite;
 }
 
+/*
+ * On a park's page the interface accent (selected chips, buttons, focus
+ * ring) takes the park's own colour: darkened a touch in light mode so white
+ * text on it stays readable, lightened in dark mode so it stands out from
+ * the night background.
+ */
+.park-scope {
+  --accent: color-mix(in oklab, var(--park) 86%, black);
+  --accent-ink: #ffffff;
+}
+
+@media (prefers-color-scheme: dark) {
+  .park-scope {
+    --accent: color-mix(in oklab, var(--park) 62%, white);
+    --accent-ink: #0f0d16;
+  }
+}
+
+/* The bottom of a park photo melts into the top of the tinted header. */
+.hero-fade {
+  background: linear-gradient(
+    0deg,
+    color-mix(in oklab, var(--park) 14%, var(--surface)) 0%,
+    transparent 45%
+  );
+}
+
+@keyframes photo-in {
+  from { opacity: 0; transform: scale(1.03); }
+}
+
+.photo-in {
+  animation: photo-in 500ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
 @keyframes spin-once {
   to { transform: rotate(360deg); }
 }
@@ -169,6 +204,7 @@ body {
 
 @media (prefers-reduced-motion: reduce) {
   .live-dot,
+  .photo-in,
   .spin,
   .sheet-in,
   .scrim-in {

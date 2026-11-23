@@ -62,7 +62,7 @@ export default function ParkView({
 
   return (
     <div
-      className="flex min-h-dvh flex-col pad-safe-top pad-safe-x"
+      className="park-scope flex min-h-dvh flex-col pad-safe-top pad-safe-x"
       style={{ "--park": park.accent } as React.CSSProperties}
     >
       <div className="safe-top-scrim" aria-hidden />

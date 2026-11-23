@@ -49,7 +49,7 @@ export const PARKS = [
     } as ParkSource,
     center: [2.5706, 49.1339] as [number, number],
     zoom: 15.2,
-    accent: "#0ea5e9",
+    accent: "#0e8a3e",
     website: "https://www.parcasterix.fr",
   },
   {
@@ -65,7 +65,7 @@ export const PARKS = [
     } as ParkSource,
     center: [7.7215, 48.2655] as [number, number],
     zoom: 14.6,
-    accent: "#f97316",
+    accent: "#1d5fb8",
     website: "https://www.europapark.de/fr",
   },
   {
@@ -78,7 +78,7 @@ export const PARKS = [
     source: { provider: "queuetimes", parkId: 301 } as ParkSource,
     center: [5.5699, 45.6219] as [number, number],
     zoom: 15.8,
-    accent: "#65a30d",
+    accent: "#e2001a",
     website: "https://www.walibi.fr",
   },
   {
@@ -96,7 +96,7 @@ export const PARKS = [
     } as ParkSource,
     center: [2.7761, 48.8723] as [number, number],
     zoom: 15.6,
-    accent: "#6366f1",
+    accent: "#2d3f9a",
     website: "https://www.disneylandparis.com/fr-fr/",
   },
   {
@@ -130,7 +130,7 @@ export const PARKS = [
     } as ParkSource,
     center: [0.3705, 46.6704] as [number, number],
     zoom: 15.4,
-    accent: "#14b8a6",
+    accent: "#0a9bd8",
     website: "https://www.futuroscope.com/",
   },
   {
